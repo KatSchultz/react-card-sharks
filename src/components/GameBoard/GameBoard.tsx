@@ -1,5 +1,16 @@
 import React from "react";
+import Card from "../Cards/Card";
 
-export default function GameBoard() {
-  return <div className="game-board"></div>;
+interface Props {
+  cards: string[];
+}
+
+export default function GameBoard({ cards }: Props) {
+  return (
+    <div className="game-board">
+      {cards.map((card) => (
+        <Card card={card} key={card} />
+      ))}
+    </div>
+  );
 }

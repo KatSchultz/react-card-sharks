@@ -1,4 +1,5 @@
 import React from "react";
+import GameButtons from "../GameButtons/GameButtons";
 
 export default function Directions() {
   return (
@@ -15,6 +16,7 @@ export default function Directions() {
         <li>You have 25 seconds to complete the game</li>
         <li>Time will start once you click the start button</li>
       </ul>
+      <GameButtons />
     </div>
   );
 }

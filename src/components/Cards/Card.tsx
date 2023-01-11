@@ -1,5 +1,16 @@
 import React from "react";
 
-export default function Card() {
-  return <div className="card">Card</div>;
+interface Props {
+  card: string;
+}
+
+export default function Card({ card }: Props) {
+  const imgPath = `../../images/${card}`;
+
+  return (
+    <div className="card">
+      <p>Card</p>
+      <img src={process.env.PUBLIC_URL + card} alt="" />
+    </div>
+  );
 }
