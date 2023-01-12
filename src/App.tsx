@@ -6,18 +6,17 @@ import GameBoard from "./components/GameBoard/GameBoard";
 
 function App() {
   const cards = [
-    "/images/img-0.png",
-    "/images/img-1.png",
-    "/images/img-3.png",
-    "/images/img-4.png",
-    "/images/img-5.png",
-    "/images/img-6.png",
-    "/images/img-7.png",
-    "/images/img-8.png",
-    "/images/img-9.png",
-    "/images/img-10.png",
-    "/images/img-11.png",
-    "/images/img-12.png",
+    { name: "stingray", image: "/images/img-0.png" },
+    { name: "blue hippo tang", image: "/images/img-1.png" },
+    { name: "clownfish", image: "/images/img-2.png" },
+    { name: "octopus", image: "/images/img-3.png" },
+    { name: "sea turtle", image: "/images/img-4.png" },
+    { name: "whale shark", image: "/images/img-5.png" },
+    { name: "great white shark", image: "/images/img-6.png" },
+    { name: "squid", image: "/images/img-7.png" },
+    { name: "orca", image: "/images/img-8.png" },
+    { name: "crab", image: "/images/img-9.png" },
+    { name: "seahorse", image: "/images/img-10.png" },
   ];
 
   //create shuffle function

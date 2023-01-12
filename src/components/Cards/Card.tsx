@@ -1,7 +1,9 @@
 import React from "react";
+import "./Card.css";
+import { PlayingCard } from "../../types";
 
 interface Props {
-  card: string;
+  card: PlayingCard;
 }
 
 export default function Card({ card }: Props) {
@@ -9,8 +11,11 @@ export default function Card({ card }: Props) {
 
   return (
     <div className="card">
-      <p>Card</p>
-      <img src={process.env.PUBLIC_URL + card} alt="" />
+      <img
+        src={process.env.PUBLIC_URL + card.image}
+        alt={card.name}
+        className="fish-img"
+      />
     </div>
   );
 }
