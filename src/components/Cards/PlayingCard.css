@@ -1,0 +1,17 @@
+.playing-card {
+  /* width: 100px;
+  height: 100px; */
+  /* max-width: 100%;
+  max-height: ; */
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: solid 1px black; */
+  padding: 1rem;
+}
+
+.fish-img {
+  max-width: 100%;
+  max-height: 100%;
+}
