@@ -25,8 +25,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Directions />
-      <GameBoard cards={cards} />
+      <div className="main-content">
+        <Directions />
+        <GameBoard cards={cards} />
+      </div>
     </div>
   );
 }

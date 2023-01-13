@@ -1,10 +1,11 @@
 import React from "react";
+import "./Directions.css";
 import GameButtons from "../GameButtons/GameButtons";
 
 export default function Directions() {
   return (
     <div>
-      <h2>How to Play</h2>
+      <h2 className="title-secondary">How to Play</h2>
       <ul>
         <li>Choose two cards to compare</li>
         <li>If the two cards match, they will be removed from the board</li>

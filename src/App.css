@@ -4,5 +4,22 @@
 }
 
 .App {
-  text-align: center;
+  min-height: 100vh;
+  background-image: url("../public//images/background-image.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+  }
 }
