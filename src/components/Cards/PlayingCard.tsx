@@ -5,14 +5,16 @@ import Paper from "@mui/material/Paper";
 
 interface Props {
   card: PlayingCard;
+  trackFlips: (name: string) => void;
 }
 
-export default function Card({ card }: Props) {
+export default function Card({ card, trackFlips }: Props) {
   const [cardRevealed, setCardRevealed] = useState(false);
   const frontOfCard = "/images/frontOfCard.png";
 
   function clickHandler() {
     setCardRevealed(true);
+    trackFlips(card.name);
   }
 
   return (

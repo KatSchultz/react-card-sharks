@@ -7,8 +7,8 @@ import { PlayingCard } from "./types";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
-  const [gameSize, setGameSize] = useState(12);
-  const [flippedCards, setFlippedCards] = useState([]);
+  const [gameSize, setGameSize] = useState(16);
+  const [flippedCards, setFlippedCards] = useState<string[]>([]);
   const [matches, setMatches] = useState(0);
 
   const cards = [
@@ -58,22 +58,38 @@ function App() {
     }
     return randomArray;
   }
-  // shuffleCards();
 
-  //create timer function
   //create card matching function
+
+  function trackFlippedCards(name: string) {
+    setFlippedCards((prev: string[]) => [...prev, name]);
+  }
+
   function matchCheck() {
     if (flippedCards[0] === flippedCards[1]) {
       setMatches((prev) => prev + 1);
     }
+    console.log(flippedCards);
+    setFlippedCards([]);
   }
+
+  flippedCards.length === 2 && matchCheck();
+
+  //flip cards over if no match
+  //remove cards if they do match
+
+  //create timer function
+
+  //create win function
+
+  //create lose function
 
   return (
     <div className="App">
       <Header />
       <div className="main-content">
         <Directions shuffleCards={shuffleCards} />
-        <GameBoard cards={activeCards} />
+        <GameBoard cards={activeCards} trackFlips={trackFlippedCards} />
       </div>
     </div>
   );
