@@ -1,6 +1,7 @@
 export interface PlayingCard {
   name: string;
   image: string;
+  uniqueKey?: number;
 }
 
 declare module "@mui/material/styles" {
