@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./PlayingCard.css";
 import { PlayingCard } from "../../types";
 import Paper from "@mui/material/Paper";
@@ -6,19 +6,61 @@ import Paper from "@mui/material/Paper";
 interface Props {
   card: PlayingCard;
   trackFlips: (name: string) => void;
+  flippedCards: string[];
+  noMatchFlip: number;
+  setNoMatchFlip: Dispatch<SetStateAction<number>>;
+  foundPairs: string[];
 }
 
-export default function Card({ card, trackFlips }: Props) {
+export default function Card({
+  card,
+  trackFlips,
+  noMatchFlip,
+  setNoMatchFlip,
+  flippedCards,
+  foundPairs,
+}: Props) {
   const [cardRevealed, setCardRevealed] = useState(false);
+  const [clickable, setClickable] = useState(true);
+  const [alreadyMatched, setAlreadyMatched] = useState(false);
   const frontOfCard = "/images/frontOfCard.png";
+  const hiddenClass = alreadyMatched ? "hidden" : "";
+
+  //flips mismatched cards back over
+  useEffect(() => {
+    resetCards();
+
+    console.log(noMatchFlip);
+  }, [noMatchFlip]);
+
+  //remove matching cards from board
+  useEffect(() => {
+    if (foundPairs.includes(card.name)) {
+      setAlreadyMatched(true);
+    }
+  }, [card.name, foundPairs]);
+  console.log(alreadyMatched);
 
   function clickHandler() {
     setCardRevealed(true);
+    setClickable(false);
     trackFlips(card.name);
   }
 
+  function resetCards() {
+    console.log("reset cards called");
+    setCardRevealed(false);
+    setClickable(true);
+  }
+  //BELOW IS INFINITE LOOP, prob cuz we are trying to flip 2 cards over and resetting noMatchFlip twice?
+  // noMatchFlip === true && resetCards();
+
   return (
-    <Paper elevation={3} className="playing-card" onClick={clickHandler}>
+    <Paper
+      elevation={3}
+      className={"playing-card " + hiddenClass}
+      onClick={clickable ? clickHandler : () => {}}
+    >
       {!cardRevealed && (
         <img
           src={process.env.PUBLIC_URL + frontOfCard}

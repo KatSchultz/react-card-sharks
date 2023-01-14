@@ -10,6 +10,8 @@ function App() {
   const [gameSize, setGameSize] = useState(16);
   const [flippedCards, setFlippedCards] = useState<string[]>([]);
   const [matches, setMatches] = useState(0);
+  const [noMatchFlip, setNoMatchFlip] = useState(0);
+  const [foundPairs, setFoundPairs] = useState<string[]>([]);
 
   const cards = [
     { name: "stingray", image: "/images/img-0.png" },
@@ -66,14 +68,26 @@ function App() {
   }
 
   function matchCheck() {
-    if (flippedCards[0] === flippedCards[1]) {
-      setMatches((prev) => prev + 1);
-    }
-    console.log(flippedCards);
+    //if matching
+    setTimeout(() => {
+      if (flippedCards[0] === flippedCards[1]) {
+        setMatches((prev) => prev + 1);
+        setFoundPairs((prev) => [...prev, flippedCards[0]]);
+        console.log("match count", matches);
+      } else {
+        setNoMatchFlip((prev) => prev + 1);
+        console.log("no match counter", noMatchFlip);
+      }
+      console.log(flippedCards);
+    }, 1000);
     setFlippedCards([]);
   }
 
   flippedCards.length === 2 && matchCheck();
+
+  //maybe add paired cards array to keep matched cards hidden
+
+  //ADD RESET CARDS FUNCTION/INITIATOR
 
   //flip cards over if no match
   //remove cards if they do match
@@ -89,7 +103,14 @@ function App() {
       <Header />
       <div className="main-content">
         <Directions shuffleCards={shuffleCards} />
-        <GameBoard cards={activeCards} trackFlips={trackFlippedCards} />
+        <GameBoard
+          cards={activeCards}
+          trackFlips={trackFlippedCards}
+          flippedCards={flippedCards}
+          noMatchFlip={noMatchFlip}
+          setNoMatchFlip={setNoMatchFlip}
+          foundPairs={foundPairs}
+        />
       </div>
     </div>
   );
