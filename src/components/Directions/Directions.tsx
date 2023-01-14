@@ -2,7 +2,11 @@ import React from "react";
 import "./Directions.css";
 import GameButtons from "../GameButtons/GameButtons";
 
-export default function Directions() {
+interface Props {
+  shuffleCards: () => void;
+}
+
+export default function Directions({ shuffleCards }: Props) {
   return (
     <div>
       <h2 className="title-secondary">How to Play</h2>
@@ -17,7 +21,7 @@ export default function Directions() {
         <li>You have 25 seconds to complete the game</li>
         <li>Time will start once you click the start button</li>
       </ul>
-      <GameButtons />
+      <GameButtons shuffleCards={shuffleCards} />
     </div>
   );
 }

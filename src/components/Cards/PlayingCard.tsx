@@ -20,7 +20,7 @@ export default function Card({ card }: Props) {
       {!cardRevealed && (
         <img
           src={process.env.PUBLIC_URL + frontOfCard}
-          alt={card.name}
+          alt="unknown"
           className="fish-img"
         />
       )}
