@@ -1,7 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./PlayingCard.css";
 import { PlayingCard } from "../../types";
-import Paper from "@mui/material/Paper";
+import Paper, { paperClasses } from "@mui/material/Paper";
+import styled from "@emotion/styled";
 
 interface Props {
   card: PlayingCard;
@@ -25,6 +26,8 @@ export default function Card({
   const [alreadyMatched, setAlreadyMatched] = useState(false);
   const frontOfCard = "/images/frontOfCard.png";
   const hiddenClass = alreadyMatched ? "hidden" : "";
+  const animateFlip = cardRevealed ? " flip" : "";
+  const animateFlipOver = cardRevealed ? "" : " flip";
 
   //flips mismatched cards back over
   useEffect(() => {
@@ -41,6 +44,10 @@ export default function Card({
   }, [card.name, foundPairs]);
   console.log(alreadyMatched);
 
+  const CustomPaper = styled(Paper)({
+    background: "transparent",
+  }) as typeof Paper;
+
   function clickHandler() {
     setCardRevealed(true);
     setClickable(false);
@@ -52,16 +59,33 @@ export default function Card({
     setCardRevealed(false);
     setClickable(true);
   }
-  //BELOW IS INFINITE LOOP, prob cuz we are trying to flip 2 cards over and resetting noMatchFlip twice?
-  // noMatchFlip === true && resetCards();
 
   return (
     <Paper
-      elevation={3}
-      className={"playing-card " + hiddenClass}
+      elevation={1}
+      sx={{
+        background: "transparent",
+      }}
+      className={"playing-card " + hiddenClass + animateFlip}
       onClick={clickable ? clickHandler : () => {}}
     >
-      {!cardRevealed && (
+      <div className="card-faces">
+        <div className="card-front face">
+          <img
+            src={process.env.PUBLIC_URL + frontOfCard}
+            alt="unknown"
+            className="fish-img"
+          />
+        </div>
+        <div className="card-back face">
+          <img
+            src={process.env.PUBLIC_URL + card.image}
+            alt={card.name}
+            className="fish-img"
+          />
+        </div>
+
+        {/* {!cardRevealed && (
         <img
           src={process.env.PUBLIC_URL + frontOfCard}
           alt="unknown"
@@ -74,7 +98,8 @@ export default function Card({
           alt={card.name}
           className="fish-img"
         />
-      )}
+      )} */}
+      </div>
     </Paper>
   );
 }
