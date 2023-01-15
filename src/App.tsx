@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import Directions from "./components/Directions/Directions";
 import GameBoard from "./components/GameBoard/GameBoard";
 import { PlayingCard } from "./types";
+import Timer from "./components/Timer/Timer";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
@@ -12,6 +13,8 @@ function App() {
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
+  const [timer, setTimer] = useState(25);
+  const [timerActive, setTimerActive] = useState(false);
 
   const cards = [
     { name: "stingray", image: "/images/img-0.png" },
@@ -68,7 +71,6 @@ function App() {
   }
 
   function matchCheck() {
-    //if matching
     setTimeout(() => {
       if (flippedCards[0] === flippedCards[1]) {
         setMatches((prev) => prev + 1);
@@ -89,10 +91,62 @@ function App() {
 
   //ADD RESET CARDS FUNCTION/INITIATOR
 
-  //flip cards over if no match
-  //remove cards if they do match
-
   //create timer function
+
+  // function updateTimer() {
+  //   setTimer((prev) => prev - 1);
+  //   // second = Number(second) - 1;
+  //   // timeDisplay.innerText = second;
+  //   if (timer === 0) {
+  //     clearInterval(startIntervalId);
+  //     // gameOver();
+  //   }
+  // }
+
+  // function countDown() {
+  //   clearInterval(startIntervalId);
+  //   startIntervalId = setInterval(updateTimer, 1200);
+  // }
+
+  // function resetTimer() {
+  //   timeDisplay.innerText = 20;
+  //   second = 20;
+  //   pairCount = 0;
+  //   countDown();
+  // }
+
+  // startTime.addEventListener(
+  //   "click",
+  //   () => {
+  //     countDown();
+  //     playBubbles();
+  //     shuffleCards(shuffleArray, 12);
+  //     cardFlipped.forEach((card) => {
+  //       card.addEventListener("click", flipCard);
+  //     });
+  //   },
+  //   {
+  //     once: true,
+  //   }
+  // );
+
+  // restart.forEach((btn) => {
+  //   btn.addEventListener("click", () => {
+  //     resetTimer();
+  //     shuffleCards(shuffleArray, 12);
+  //     matchCount = 0;
+  //     card1 = "";
+  //     underTheSea.classList.remove("visible");
+  //     victoryText.classList.remove("visible");
+  //     cardFlipped.forEach((card) => {
+  //       card.addEventListener("click", flipCard);
+  //       card.classList.remove("flip");
+  //       card.classList.remove("hidden");
+  //     });
+  //     underTheSea.classList.add("no-display");
+  //     victoryText.classList.add("no-display");
+  //   });
+  // });
 
   //create win function
 
@@ -102,7 +156,11 @@ function App() {
     <div className="App">
       <Header />
       <div className="main-content">
-        <Directions shuffleCards={shuffleCards} />
+        <Directions
+          shuffleCards={shuffleCards}
+          setTimerActive={setTimerActive}
+        />
+        <Timer timer={timer} setTimer={setTimer} timerActive={timerActive} />
         <GameBoard
           cards={activeCards}
           trackFlips={trackFlippedCards}

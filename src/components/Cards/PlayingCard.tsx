@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./PlayingCard.css";
 import { PlayingCard } from "../../types";
-import Paper, { paperClasses } from "@mui/material/Paper";
-import styled from "@emotion/styled";
+import Paper from "@mui/material/Paper";
 
 interface Props {
   card: PlayingCard;
@@ -27,7 +26,6 @@ export default function Card({
   const frontOfCard = "/images/frontOfCard.png";
   const hiddenClass = alreadyMatched ? "hidden" : "";
   const animateFlip = cardRevealed ? " flip" : "";
-  const animateFlipOver = cardRevealed ? "" : " flip";
 
   //flips mismatched cards back over
   useEffect(() => {
@@ -43,10 +41,6 @@ export default function Card({
     }
   }, [card.name, foundPairs]);
   console.log(alreadyMatched);
-
-  const CustomPaper = styled(Paper)({
-    background: "transparent",
-  }) as typeof Paper;
 
   function clickHandler() {
     setCardRevealed(true);
