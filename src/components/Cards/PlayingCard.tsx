@@ -5,33 +5,32 @@ import Paper from "@mui/material/Paper";
 
 interface Props {
   card: PlayingCard;
-  trackFlips: (name: string) => void;
-  flippedCards: string[];
-  noMatchFlip: number;
-  setNoMatchFlip: Dispatch<SetStateAction<number>>;
+  trackFlips: (name: string) => void; // add name of card to array to check for matching
+  noMatchFlip: number; //increases when pair doesnt match, triggers flip cards face down again
   foundPairs: string[];
+  flipCount: number;
+  setFlipCount: Dispatch<SetStateAction<number>>;
 }
 
 export default function Card({
   card,
   trackFlips,
   noMatchFlip,
-  setNoMatchFlip,
-  flippedCards,
   foundPairs,
+  flipCount,
+  setFlipCount,
 }: Props) {
   const [cardRevealed, setCardRevealed] = useState(false);
   const [clickable, setClickable] = useState(true);
   const [alreadyMatched, setAlreadyMatched] = useState(false);
   const frontOfCard = "/images/frontOfCard.png";
+
   const hiddenClass = alreadyMatched ? "hidden" : "";
   const animateFlip = cardRevealed ? " flip" : "";
 
   //flips mismatched cards back over
   useEffect(() => {
     resetCards();
-
-    console.log(noMatchFlip);
   }, [noMatchFlip]);
 
   //remove matching cards from board
@@ -40,16 +39,24 @@ export default function Card({
       setAlreadyMatched(true);
     }
   }, [card.name, foundPairs]);
-  console.log(alreadyMatched);
+
+  //if two cards are showing, disable all cards from flipping
+  useEffect(() => {
+    if (flipCount >= 2) {
+      setClickable(false);
+    } else {
+      setClickable(true);
+    }
+  }, [flipCount]);
 
   function clickHandler() {
     setCardRevealed(true);
     setClickable(false);
     trackFlips(card.name);
+    setFlipCount((prev) => prev + 1);
   }
 
   function resetCards() {
-    console.log("reset cards called");
     setCardRevealed(false);
     setClickable(true);
   }
