@@ -3,9 +3,15 @@ interface Props {
   timer: number;
   setTimer: Dispatch<SetStateAction<number>>;
   timerActive: boolean;
+  setTimerActive: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Timer({ timer, setTimer, timerActive }: Props) {
+export default function Timer({
+  timer,
+  setTimer,
+  timerActive,
+  setTimerActive,
+}: Props) {
   useEffect(() => {
     if (timerActive) {
       setTimeout(() => {
@@ -13,6 +19,8 @@ export default function Timer({ timer, setTimer, timerActive }: Props) {
       }, 1000);
     }
   }, [timer, timerActive]);
+
+  if (timer === 1) setTimerActive(false);
 
   return <h2>{timer}</h2>;
 }

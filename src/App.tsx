@@ -47,6 +47,7 @@ function App() {
 
   //create shuffle cards function
   function shuffleCards() {
+    setTimer(25);
     const firstHalfArray = cards.slice(0, gameSize);
     console.log("is it double printing");
     const shuffledArray = justShuffle(firstHalfArray);
@@ -93,60 +94,7 @@ function App() {
 
   //create timer function
 
-  // function updateTimer() {
-  //   setTimer((prev) => prev - 1);
-  //   // second = Number(second) - 1;
-  //   // timeDisplay.innerText = second;
-  //   if (timer === 0) {
-  //     clearInterval(startIntervalId);
-  //     // gameOver();
-  //   }
-  // }
-
-  // function countDown() {
-  //   clearInterval(startIntervalId);
-  //   startIntervalId = setInterval(updateTimer, 1200);
-  // }
-
-  // function resetTimer() {
-  //   timeDisplay.innerText = 20;
-  //   second = 20;
-  //   pairCount = 0;
-  //   countDown();
-  // }
-
-  // startTime.addEventListener(
-  //   "click",
-  //   () => {
-  //     countDown();
-  //     playBubbles();
-  //     shuffleCards(shuffleArray, 12);
-  //     cardFlipped.forEach((card) => {
-  //       card.addEventListener("click", flipCard);
-  //     });
-  //   },
-  //   {
-  //     once: true,
-  //   }
-  // );
-
-  // restart.forEach((btn) => {
-  //   btn.addEventListener("click", () => {
-  //     resetTimer();
-  //     shuffleCards(shuffleArray, 12);
-  //     matchCount = 0;
-  //     card1 = "";
-  //     underTheSea.classList.remove("visible");
-  //     victoryText.classList.remove("visible");
-  //     cardFlipped.forEach((card) => {
-  //       card.addEventListener("click", flipCard);
-  //       card.classList.remove("flip");
-  //       card.classList.remove("hidden");
-  //     });
-  //     underTheSea.classList.add("no-display");
-  //     victoryText.classList.add("no-display");
-  //   });
-  // });
+  //add IDs to cards
 
   //create win function
 
@@ -160,7 +108,12 @@ function App() {
           shuffleCards={shuffleCards}
           setTimerActive={setTimerActive}
         />
-        <Timer timer={timer} setTimer={setTimer} timerActive={timerActive} />
+        <Timer
+          timer={timer}
+          setTimer={setTimer}
+          timerActive={timerActive}
+          setTimerActive={setTimerActive}
+        />
         <GameBoard
           cards={activeCards}
           trackFlips={trackFlippedCards}

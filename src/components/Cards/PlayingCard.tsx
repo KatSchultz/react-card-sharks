@@ -59,6 +59,7 @@ export default function Card({
       elevation={1}
       sx={{
         background: "transparent",
+        boxShadow: "none",
       }}
       className={"playing-card " + hiddenClass + animateFlip}
       onClick={clickable ? clickHandler : () => {}}
