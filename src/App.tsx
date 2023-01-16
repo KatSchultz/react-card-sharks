@@ -9,7 +9,8 @@ import Timer from "./components/Timer/Timer";
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
   const [gameSize, setGameSize] = useState(16);
-  const [flippedCards, setFlippedCards] = useState<string[]>([]);
+  const [flipCount, setFlipCount] = useState(0);
+  const [flippedCards, setFlippedCards] = useState<string[]>([]); // holds 2 active cards for comparison
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
@@ -65,11 +66,10 @@ function App() {
     return randomArray;
   }
 
-  //create card matching function
-
   function trackFlippedCards(name: string) {
     setFlippedCards((prev: string[]) => [...prev, name]);
   }
+  //create card matching function
 
   function matchCheck() {
     setTimeout(() => {
@@ -82,19 +82,18 @@ function App() {
         console.log("no match counter", noMatchFlip);
       }
       console.log(flippedCards);
+      //re-enable flipping here
+      setFlipCount(0);
     }, 1000);
     setFlippedCards([]);
   }
+  // flippedCards.length === 2 && setDisableAllCards(true);
 
   flippedCards.length === 2 && matchCheck();
 
   //maybe add paired cards array to keep matched cards hidden
 
   //ADD RESET CARDS FUNCTION/INITIATOR
-
-  //create timer function
-
-  //add IDs to cards
 
   //disable card flipping when two cards are showing
 
@@ -119,10 +118,10 @@ function App() {
         <GameBoard
           cards={activeCards}
           trackFlips={trackFlippedCards}
-          flippedCards={flippedCards}
           noMatchFlip={noMatchFlip}
-          setNoMatchFlip={setNoMatchFlip}
           foundPairs={foundPairs}
+          flipCount={flipCount}
+          setFlipCount={setFlipCount}
         />
       </div>
     </div>

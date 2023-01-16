@@ -2,38 +2,36 @@ import React, { Dispatch, SetStateAction } from "react";
 import "./GameBoard.css";
 import Card from "../Cards/PlayingCard";
 import { PlayingCard } from "../../types";
-import Grid2 from "@mui/material/Unstable_Grid2";
 import { Grid } from "@mui/material";
 
 interface Props {
   cards: PlayingCard[];
   trackFlips: (name: string) => void;
-  flippedCards: string[];
   noMatchFlip: number;
-  setNoMatchFlip: Dispatch<SetStateAction<number>>;
   foundPairs: string[];
+  flipCount: number;
+  setFlipCount: Dispatch<SetStateAction<number>>;
 }
-
 export default function GameBoard({
   cards,
   trackFlips,
   noMatchFlip,
-  setNoMatchFlip,
-  flippedCards,
   foundPairs,
+  flipCount,
+  setFlipCount,
 }: Props) {
   return (
     <Grid container spacing={2} className="game-board">
-      {cards.map((card, index) => (
+      {cards.map((card) => (
         <Grid item xs={4} sm={4} md={3} lg={2} key={card.id}>
           {/* only okay to use index as key when not modifying layout of objects */}
           <Card
             card={card}
             trackFlips={trackFlips}
-            flippedCards={flippedCards}
             noMatchFlip={noMatchFlip}
-            setNoMatchFlip={setNoMatchFlip}
             foundPairs={foundPairs}
+            flipCount={flipCount}
+            setFlipCount={setFlipCount}
           />
         </Grid>
       ))}
