@@ -17,28 +17,28 @@ function App() {
   const [timerActive, setTimerActive] = useState(false);
 
   const cards = [
-    { name: "stingray", image: "/images/img-0.png" },
-    { name: "stingray", image: "/images/img-0.png" },
-    { name: "blue hippo tang", image: "/images/img-1.png" },
-    { name: "blue hippo tang", image: "/images/img-1.png" },
-    { name: "clownfish", image: "/images/img-2.png" },
-    { name: "clownfish", image: "/images/img-2.png" },
-    { name: "octopus", image: "/images/img-3.png" },
-    { name: "octopus", image: "/images/img-3.png" },
-    { name: "sea turtle", image: "/images/img-4.png" },
-    { name: "sea turtle", image: "/images/img-4.png" },
-    { name: "whale shark", image: "/images/img-5.png" },
-    { name: "whale shark", image: "/images/img-5.png" },
-    { name: "great white shark", image: "/images/img-6.png" },
-    { name: "great white shark", image: "/images/img-6.png" },
-    { name: "squid", image: "/images/img-7.png" },
-    { name: "squid", image: "/images/img-7.png" },
-    { name: "orca", image: "/images/img-8.png" },
-    { name: "orca", image: "/images/img-8.png" },
-    { name: "crab", image: "/images/img-9.png" },
-    { name: "crab", image: "/images/img-9.png" },
-    { name: "seahorse", image: "/images/img-10.png" },
-    { name: "seahorse", image: "/images/img-10.png" },
+    { id: 1, name: "stingray", image: "/images/img-0.png" },
+    { id: 2, name: "stingray", image: "/images/img-0.png" },
+    { id: 3, name: "blue hippo tang", image: "/images/img-1.png" },
+    { id: 4, name: "blue hippo tang", image: "/images/img-1.png" },
+    { id: 5, name: "clownfish", image: "/images/img-2.png" },
+    { id: 6, name: "clownfish", image: "/images/img-2.png" },
+    { id: 7, name: "octopus", image: "/images/img-3.png" },
+    { id: 8, name: "octopus", image: "/images/img-3.png" },
+    { id: 9, name: "sea turtle", image: "/images/img-4.png" },
+    { id: 10, name: "sea turtle", image: "/images/img-4.png" },
+    { id: 11, name: "whale shark", image: "/images/img-5.png" },
+    { id: 12, name: "whale shark", image: "/images/img-5.png" },
+    { id: 13, name: "great white shark", image: "/images/img-6.png" },
+    { id: 14, name: "great white shark", image: "/images/img-6.png" },
+    { id: 15, name: "squid", image: "/images/img-7.png" },
+    { id: 16, name: "squid", image: "/images/img-7.png" },
+    { id: 17, name: "orca", image: "/images/img-8.png" },
+    { id: 18, name: "orca", image: "/images/img-8.png" },
+    { id: 19, name: "crab", image: "/images/img-9.png" },
+    { id: 20, name: "crab", image: "/images/img-9.png" },
+    { id: 21, name: "seahorse", image: "/images/img-10.png" },
+    { id: 22, name: "seahorse", image: "/images/img-10.png" },
   ];
 
   useEffect(() => {
@@ -95,6 +95,8 @@ function App() {
   //create timer function
 
   //add IDs to cards
+
+  //disable card flipping when two cards are showing
 
   //create win function
 
