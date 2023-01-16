@@ -25,7 +25,7 @@ export default function GameBoard({
   return (
     <Grid container spacing={2} className="game-board">
       {cards.map((card, index) => (
-        <Grid item xs={4} sm={4} md={3} lg={2} key={index}>
+        <Grid item xs={4} sm={4} md={3} lg={2} key={card.id}>
           {/* only okay to use index as key when not modifying layout of objects */}
           <Card
             card={card}
