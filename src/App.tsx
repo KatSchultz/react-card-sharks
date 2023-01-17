@@ -8,14 +8,15 @@ import Timer from "./components/Timer/Timer";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
-  const [gameSize, setGameSize] = useState(16);
+  const [gameSize, setGameSize] = useState(12);
   const [flipCount, setFlipCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<string[]>([]); // holds 2 active cards for comparison
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
-  const [timer, setTimer] = useState(25);
+  const [timer, setTimer] = useState(10);
   const [timerActive, setTimerActive] = useState(false);
+  const [gameOverStatus, setGameOverStatus] = useState(false);
 
   const cards = [
     { id: 1, name: "stingray", image: "/images/img-0.png" },
@@ -45,6 +46,8 @@ function App() {
   useEffect(() => {
     setActiveCards(cards.slice(0, gameSize));
   }, []);
+
+  function handleStartButton() {}
 
   //create shuffle cards function
   function shuffleCards() {
@@ -84,10 +87,9 @@ function App() {
       console.log(flippedCards);
       //re-enable flipping here
       setFlipCount(0);
-    }, 1000);
+    }, 800);
     setFlippedCards([]);
   }
-  // flippedCards.length === 2 && setDisableAllCards(true);
 
   flippedCards.length === 2 && matchCheck();
 
@@ -95,11 +97,29 @@ function App() {
 
   //ADD RESET CARDS FUNCTION/INITIATOR
 
-  //disable card flipping when two cards are showing
+  function resetGame() {}
 
   //create win function
 
+  function winGame() {
+    setTimerActive(false);
+    //stop timer
+    //display modal
+  }
+
   //create lose function
+
+  //maybe gameOverStatus and TimerActive serve same purpose?
+  function gameOver() {
+    setGameOverStatus(true);
+    //turn all cards over
+    //disable all cards
+    //display modal
+  }
+
+  //TODO double clicking on one card removes its pair
+  //stop timer when all cards matched
+  //why flipping disabled when 2 seconds left? - because i setTimerActive(false) at 1 second left
 
   return (
     <div className="App">
@@ -122,6 +142,7 @@ function App() {
           foundPairs={foundPairs}
           flipCount={flipCount}
           setFlipCount={setFlipCount}
+          timerActive={timerActive}
         />
       </div>
     </div>

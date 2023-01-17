@@ -11,6 +11,7 @@ interface Props {
   foundPairs: string[];
   flipCount: number;
   setFlipCount: Dispatch<SetStateAction<number>>;
+  timerActive: boolean;
 }
 export default function GameBoard({
   cards,
@@ -19,6 +20,7 @@ export default function GameBoard({
   foundPairs,
   flipCount,
   setFlipCount,
+  timerActive,
 }: Props) {
   return (
     <Grid container spacing={2} className="game-board">
@@ -32,6 +34,7 @@ export default function GameBoard({
             foundPairs={foundPairs}
             flipCount={flipCount}
             setFlipCount={setFlipCount}
+            timerActive={timerActive}
           />
         </Grid>
       ))}

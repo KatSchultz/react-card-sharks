@@ -10,6 +10,7 @@ interface Props {
   foundPairs: string[];
   flipCount: number;
   setFlipCount: Dispatch<SetStateAction<number>>;
+  timerActive: boolean;
 }
 
 export default function Card({
@@ -19,12 +20,12 @@ export default function Card({
   foundPairs,
   flipCount,
   setFlipCount,
+  timerActive,
 }: Props) {
   const [cardRevealed, setCardRevealed] = useState(false);
-  const [clickable, setClickable] = useState(true);
+  const [clickable, setClickable] = useState(false);
   const [alreadyMatched, setAlreadyMatched] = useState(false);
   const frontOfCard = "/images/frontOfCard.png";
-
   const hiddenClass = alreadyMatched ? "hidden" : "";
   const animateFlip = cardRevealed ? " flip" : "";
 
@@ -42,12 +43,12 @@ export default function Card({
 
   //if two cards are showing, disable all cards from flipping
   useEffect(() => {
-    if (flipCount >= 2) {
-      setClickable(false);
-    } else {
+    if (flipCount < 2 && timerActive) {
       setClickable(true);
+    } else {
+      setClickable(false);
     }
-  }, [flipCount]);
+  }, [flipCount, timerActive]);
 
   function clickHandler() {
     setCardRevealed(true);
@@ -60,6 +61,8 @@ export default function Card({
     setCardRevealed(false);
     setClickable(true);
   }
+
+  // if (timerActive) setClickable(true);
 
   return (
     <Paper

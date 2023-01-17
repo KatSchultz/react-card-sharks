@@ -15,12 +15,18 @@ export default function Timer({
   useEffect(() => {
     if (timerActive) {
       setTimeout(() => {
-        setTimer((prev) => prev - 1);
+        updateTimer();
       }, 1000);
     }
   }, [timer, timerActive]);
 
-  if (timer === 1) setTimerActive(false);
+  function updateTimer() {
+    if (timer > 0) {
+      setTimer((prev) => prev - 1);
+    } else {
+      setTimerActive(false);
+    }
+  }
 
   return <h2>{timer}</h2>;
 }
