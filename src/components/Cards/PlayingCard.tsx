@@ -5,7 +5,8 @@ import Paper from "@mui/material/Paper";
 
 interface Props {
   card: PlayingCard;
-  trackFlips: (name: string) => void; // add name of card to array to check for matching
+  flippedCards: PlayingCard[];
+  trackFlips: (card: PlayingCard) => void; // add name of card to array to check for matching
   noMatchFlip: number; //increases when pair doesnt match, triggers flip cards face down again
   foundPairs: string[];
   flipCount: number;
@@ -15,6 +16,7 @@ interface Props {
 
 export default function Card({
   card,
+  flippedCards,
   trackFlips,
   noMatchFlip,
   foundPairs,
@@ -45,15 +47,19 @@ export default function Card({
   useEffect(() => {
     if (flipCount < 2 && timerActive) {
       setClickable(true);
+
+      if (flippedCards[0] && flippedCards[0].id === card.id) {
+        setClickable(false);
+      }
     } else {
       setClickable(false);
     }
-  }, [flipCount, timerActive]);
+  }, [flipCount, timerActive, flippedCards, card.id]);
 
   function clickHandler() {
     setCardRevealed(true);
     setClickable(false);
-    trackFlips(card.name);
+    trackFlips(card);
     setFlipCount((prev) => prev + 1);
   }
 

@@ -6,7 +6,8 @@ import { Grid } from "@mui/material";
 
 interface Props {
   cards: PlayingCard[];
-  trackFlips: (name: string) => void;
+  flippedCards: PlayingCard[];
+  trackFlips: (card: PlayingCard) => void;
   noMatchFlip: number;
   foundPairs: string[];
   flipCount: number;
@@ -15,6 +16,7 @@ interface Props {
 }
 export default function GameBoard({
   cards,
+  flippedCards,
   trackFlips,
   noMatchFlip,
   foundPairs,
@@ -29,6 +31,7 @@ export default function GameBoard({
           {/* only okay to use index as key when not modifying layout of objects */}
           <Card
             card={card}
+            flippedCards={flippedCards}
             trackFlips={trackFlips}
             noMatchFlip={noMatchFlip}
             foundPairs={foundPairs}

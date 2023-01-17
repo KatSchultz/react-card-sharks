@@ -10,7 +10,7 @@ function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
   const [gameSize, setGameSize] = useState(12);
   const [flipCount, setFlipCount] = useState(0);
-  const [flippedCards, setFlippedCards] = useState<string[]>([]); // holds 2 active cards for comparison
+  const [flippedCards, setFlippedCards] = useState<PlayingCard[]>([]); // holds 2 active cards for comparison
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
@@ -69,16 +69,16 @@ function App() {
     return randomArray;
   }
 
-  function trackFlippedCards(name: string) {
-    setFlippedCards((prev: string[]) => [...prev, name]);
+  function trackFlippedCards(card: PlayingCard) {
+    setFlippedCards((prev: PlayingCard[]) => [...prev, card]);
   }
   //create card matching function
 
   function matchCheck() {
     setTimeout(() => {
-      if (flippedCards[0] === flippedCards[1]) {
+      if (flippedCards[0].name === flippedCards[1].name) {
         setMatches((prev) => prev + 1);
-        setFoundPairs((prev) => [...prev, flippedCards[0]]);
+        setFoundPairs((prev) => [...prev, flippedCards[0].name]);
         console.log("match count", matches);
       } else {
         setNoMatchFlip((prev) => prev + 1);
@@ -137,6 +137,7 @@ function App() {
         />
         <GameBoard
           cards={activeCards}
+          flippedCards={flippedCards}
           trackFlips={trackFlippedCards}
           noMatchFlip={noMatchFlip}
           foundPairs={foundPairs}
