@@ -5,6 +5,7 @@ import Directions from "./components/Directions/Directions";
 import GameBoard from "./components/GameBoard/GameBoard";
 import { PlayingCard } from "./types";
 import Timer from "./components/Timer/Timer";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
@@ -18,6 +19,7 @@ function App() {
   const [timerActive, setTimerActive] = useState(false);
   const [gameOverStatus, setGameOverStatus] = useState(false);
   const [winStatus, setWinStatus] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     setActiveCards(cards.slice(0, gameSize));
@@ -108,6 +110,7 @@ function App() {
   function winGame() {
     console.log("you win!");
     setTimerActive(false);
+    handleOpenModal();
     //stop timer
     //display modal
   }
@@ -119,15 +122,23 @@ function App() {
     setGameOverStatus(true);
     //turn all cards over
     setNoMatchFlip((prev) => prev + 1);
+    handleOpenModal();
     //disable all cards - cards disabled when timer inactive
     //display modal
   }
 
   //TODO stop timer when all cards matched
   //why flipping disabled when 2 seconds left? - because i setTimerActive(false) at 1 second left
+  function handleOpenModal() {
+    setOpenModal(true);
+  }
+  function handleCloseModal() {
+    setOpenModal(false);
+  }
 
   return (
     <div className="App">
+      <Modal modalDisplay={openModal} closeModal={handleCloseModal} />
       <Header />
       <div className="main-content">
         <Directions startGame={startGame} setTimerActive={setTimerActive} />
