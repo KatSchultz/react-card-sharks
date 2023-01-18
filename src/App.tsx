@@ -11,6 +11,7 @@ function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
   const [gameSize, setGameSize] = useState(6);
   const [flipCount, setFlipCount] = useState(0);
+  const [moveCount, setMoveCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<PlayingCard[]>([]); // holds 2 active cards for comparison
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
@@ -94,9 +95,11 @@ function App() {
       //re-enable flipping here
       setFlipCount(0);
     }, 800);
+    setMoveCount((prev) => prev + 1);
     setFlippedCards([]);
   }
 
+  console.log("MoveCount: ", moveCount);
   flippedCards.length === 2 && matchCheck();
 
   //ADD RESET CARDS FUNCTION/INITIATOR
@@ -108,6 +111,7 @@ function App() {
   //below check creates infinite loop
 
   function winGame() {
+    setWinStatus(true);
     console.log("you win!");
     setTimerActive(false);
     handleOpenModal();
@@ -138,7 +142,14 @@ function App() {
 
   return (
     <div className="App">
-      <Modal modalDisplay={openModal} closeModal={handleCloseModal} />
+      <Modal
+        modalDisplay={openModal}
+        closeModal={handleCloseModal}
+        winStatus={winStatus}
+        gameOverStatus={gameOverStatus}
+        timer={timer}
+        moveCount={moveCount}
+      />
       <Header />
       <div className="main-content">
         <Directions startGame={startGame} setTimerActive={setTimerActive} />

@@ -12,6 +12,10 @@ interface Props {
 export default function GameButtons({ startGame, setTimerActive }: Props) {
   const CustomButton = styled(Button)({
     backgroundColor: "#dad806",
+    ":hover": {
+      backgroundColor: "#787600",
+    },
+    fontFamily: `"Titan One", cursive`,
   }) as typeof Button;
 
   function handleStartButton() {
@@ -20,7 +24,6 @@ export default function GameButtons({ startGame, setTimerActive }: Props) {
   }
 
   function handleStopTimer() {
-    console.log("stop timer activated");
     setTimerActive(false);
   }
 
@@ -30,7 +33,6 @@ export default function GameButtons({ startGame, setTimerActive }: Props) {
         Start
       </CustomButton>
       <CustomButton variant="contained">Reset</CustomButton>
-      <CustomButton onClick={handleStopTimer}>Stop Timer</CustomButton>
       {/* <button>More Time</button> */}
     </Stack>
   );
