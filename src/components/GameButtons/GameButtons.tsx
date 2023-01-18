@@ -5,18 +5,23 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 
 interface Props {
-  shuffleCards: () => void;
+  startGame: () => void;
   setTimerActive: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function GameButtons({ shuffleCards, setTimerActive }: Props) {
+export default function GameButtons({ startGame, setTimerActive }: Props) {
   const CustomButton = styled(Button)({
     backgroundColor: "#dad806",
   }) as typeof Button;
 
   function handleStartButton() {
-    shuffleCards();
+    startGame();
     setTimerActive(true);
+  }
+
+  function handleStopTimer() {
+    console.log("stop timer activated");
+    setTimerActive(false);
   }
 
   return (
@@ -25,9 +30,7 @@ export default function GameButtons({ shuffleCards, setTimerActive }: Props) {
         Start
       </CustomButton>
       <CustomButton variant="contained">Reset</CustomButton>
-      <CustomButton onClick={() => setTimerActive(false)}>
-        Stop Timer
-      </CustomButton>
+      <CustomButton onClick={handleStopTimer}>Stop Timer</CustomButton>
       {/* <button>More Time</button> */}
     </Stack>
   );

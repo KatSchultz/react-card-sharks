@@ -49,7 +49,7 @@ export default function Card({
       setClickable(true);
 
       if (flippedCards[0] && flippedCards[0].id === card.id) {
-        setClickable(false);
+        setClickable(false); //prevents flipped card from matching with itself
       }
     } else {
       setClickable(false);

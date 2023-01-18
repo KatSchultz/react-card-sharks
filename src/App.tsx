@@ -8,15 +8,24 @@ import Timer from "./components/Timer/Timer";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
-  const [gameSize, setGameSize] = useState(12);
+  const [gameSize, setGameSize] = useState(6);
   const [flipCount, setFlipCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<PlayingCard[]>([]); // holds 2 active cards for comparison
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(25);
   const [timerActive, setTimerActive] = useState(false);
   const [gameOverStatus, setGameOverStatus] = useState(false);
+  const [winStatus, setWinStatus] = useState(false);
+
+  useEffect(() => {
+    setActiveCards(cards.slice(0, gameSize));
+  }, []);
+
+  useEffect(() => {
+    if (matches === gameSize) winGame();
+  }, [matches, gameSize]);
 
   const cards = [
     { id: 1, name: "stingray", image: "/images/img-0.png" },
@@ -43,18 +52,13 @@ function App() {
     { id: 22, name: "seahorse", image: "/images/img-10.png" },
   ];
 
-  useEffect(() => {
-    setActiveCards(cards.slice(0, gameSize));
-  }, []);
-
   function handleStartButton() {}
 
   //create shuffle cards function
-  function shuffleCards() {
-    setTimer(25);
-    const firstHalfArray = cards.slice(0, gameSize);
-    console.log("is it double printing");
-    const shuffledArray = justShuffle(firstHalfArray);
+  function startGame() {
+    // setTimer(timer);
+    const cardArray = cards.slice(0, gameSize);
+    const shuffledArray = justShuffle(cardArray);
     setActiveCards(shuffledArray);
   }
 
@@ -93,15 +97,16 @@ function App() {
 
   flippedCards.length === 2 && matchCheck();
 
-  //maybe add paired cards array to keep matched cards hidden
-
   //ADD RESET CARDS FUNCTION/INITIATOR
 
   function resetGame() {}
 
   //create win function
 
+  //below check creates infinite loop
+
   function winGame() {
+    console.log("you win!");
     setTimerActive(false);
     //stop timer
     //display modal
@@ -113,22 +118,19 @@ function App() {
   function gameOver() {
     setGameOverStatus(true);
     //turn all cards over
-    //disable all cards
+    setNoMatchFlip((prev) => prev + 1);
+    //disable all cards - cards disabled when timer inactive
     //display modal
   }
 
-  //TODO double clicking on one card removes its pair
-  //stop timer when all cards matched
+  //TODO stop timer when all cards matched
   //why flipping disabled when 2 seconds left? - because i setTimerActive(false) at 1 second left
 
   return (
     <div className="App">
       <Header />
       <div className="main-content">
-        <Directions
-          shuffleCards={shuffleCards}
-          setTimerActive={setTimerActive}
-        />
+        <Directions startGame={startGame} setTimerActive={setTimerActive} />
         <Timer
           timer={timer}
           setTimer={setTimer}

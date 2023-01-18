@@ -13,20 +13,18 @@ export default function Timer({
   setTimerActive,
 }: Props) {
   useEffect(() => {
-    if (timerActive) {
-      setTimeout(() => {
-        updateTimer();
-      }, 1000);
-    }
-  }, [timer, timerActive]);
-
-  function updateTimer() {
-    if (timer > 0) {
-      setTimer((prev) => prev - 1);
-    } else {
-      setTimerActive(false);
-    }
-  }
+    console.log(timer);
+    let timeUpdate = setTimeout(() => {
+      if (timerActive) {
+        if (timer > 0) {
+          setTimer((prev) => prev - 1);
+        } else {
+          setTimerActive(false);
+        }
+      }
+    }, 1000);
+    return () => clearTimeout(timeUpdate);
+  }, [timer, timerActive, setTimer, setTimerActive]);
 
   return <h2>{timer}</h2>;
 }

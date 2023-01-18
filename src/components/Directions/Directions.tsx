@@ -3,11 +3,11 @@ import "./Directions.css";
 import GameButtons from "../GameButtons/GameButtons";
 
 interface Props {
-  shuffleCards: () => void;
+  startGame: () => void;
   setTimerActive: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Directions({ shuffleCards, setTimerActive }: Props) {
+export default function Directions({ startGame, setTimerActive }: Props) {
   return (
     <div>
       <h2 className="title-secondary">How to Play</h2>
@@ -22,10 +22,7 @@ export default function Directions({ shuffleCards, setTimerActive }: Props) {
         <li>You have 25 seconds to complete the game</li>
         <li>Time will start once you click the start button</li>
       </ul>
-      <GameButtons
-        shuffleCards={shuffleCards}
-        setTimerActive={setTimerActive}
-      />
+      <GameButtons startGame={startGame} setTimerActive={setTimerActive} />
     </div>
   );
 }
