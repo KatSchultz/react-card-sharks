@@ -165,12 +165,6 @@ function App() {
           setTimer={setTimer}
           resetGame={resetGame}
         />
-        {/* <Timer
-          timer={timer}
-          setTimer={setTimer}
-          timerActive={timerActive}
-          setTimerActive={setTimerActive}
-        /> */}
         <GameBoard
           cards={activeCards}
           flippedCards={flippedCards}
@@ -181,6 +175,7 @@ function App() {
           setFlipCount={setFlipCount}
           timerActive={timerActive}
           gameCount={gameCount}
+          gameOver={gameOverStatus}
         />
       </div>
     </div>

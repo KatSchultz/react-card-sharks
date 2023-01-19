@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -21,6 +21,14 @@ export default function GameButtons({
   setTimer,
   resetGame,
 }: Props) {
+  const [startBtnActive, setStartBtnActive] = useState(true);
+
+  useEffect(() => {
+    if (timerActive === false) {
+      setStartBtnActive(true);
+    }
+  }, [timerActive]);
+
   const CustomButton = styled(Button)({
     backgroundColor: "#dad806",
     ":hover": {
@@ -32,10 +40,12 @@ export default function GameButtons({
   function handleStartButton() {
     startGame();
     setTimerActive(true);
+    setStartBtnActive(false);
   }
 
   function handleResetButton() {
     resetGame();
+    setStartBtnActive(false);
   }
 
   return (
@@ -46,7 +56,10 @@ export default function GameButtons({
       alignItems="center"
       justifyContent="center"
     >
-      <CustomButton variant="contained" onClick={handleStartButton}>
+      <CustomButton
+        variant="contained"
+        onClick={startBtnActive ? handleStartButton : () => {}}
+      >
         Start
       </CustomButton>
       <CustomButton variant="contained" onClick={handleResetButton}>

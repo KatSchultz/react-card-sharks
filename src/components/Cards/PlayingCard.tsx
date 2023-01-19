@@ -13,6 +13,7 @@ interface Props {
   setFlipCount: Dispatch<SetStateAction<number>>;
   timerActive: boolean;
   gameCount: number;
+  gameOver: boolean;
 }
 
 export default function Card({
@@ -25,6 +26,7 @@ export default function Card({
   setFlipCount,
   timerActive,
   gameCount,
+  gameOver,
 }: Props) {
   const [cardRevealed, setCardRevealed] = useState(false);
   const [clickable, setClickable] = useState(false);
@@ -36,7 +38,7 @@ export default function Card({
   //flips mismatched pair back over
   useEffect(() => {
     resetCards();
-  }, [noMatchFlip, gameCount]);
+  }, [noMatchFlip, gameCount, gameOver]);
 
   //remove matching cards from board
   useEffect(() => {

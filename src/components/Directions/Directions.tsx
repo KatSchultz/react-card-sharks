@@ -40,6 +40,8 @@ export default function Directions({
         timer={timer}
         setTimer={setTimer}
         resetGame={resetGame}
+        // startBtnActive={startBtnActive}
+        // setStartBtnActive={setStartBtnActive}
       />
     </div>
   );
