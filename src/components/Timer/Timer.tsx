@@ -13,7 +13,6 @@ export default function Timer({
   setTimerActive,
 }: Props) {
   useEffect(() => {
-    console.log(timer);
     let timeUpdate = setTimeout(() => {
       if (timerActive) {
         if (timer > 0) {

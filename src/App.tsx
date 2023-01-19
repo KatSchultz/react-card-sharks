@@ -5,27 +5,35 @@ import Directions from "./components/Directions/Directions";
 import GameBoard from "./components/GameBoard/GameBoard";
 import { PlayingCard } from "./types";
 import Timer from "./components/Timer/Timer";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
   const [gameSize, setGameSize] = useState(6);
   const [flipCount, setFlipCount] = useState(0);
+  const [moveCount, setMoveCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<PlayingCard[]>([]); // holds 2 active cards for comparison
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
-  const [timer, setTimer] = useState(25);
+  const startTime = 10;
+  const [timer, setTimer] = useState(10);
   const [timerActive, setTimerActive] = useState(false);
   const [gameOverStatus, setGameOverStatus] = useState(false);
   const [winStatus, setWinStatus] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     setActiveCards(cards.slice(0, gameSize));
-  }, []);
+  }, [gameSize]);
 
   useEffect(() => {
     if (matches === gameSize) winGame();
   }, [matches, gameSize]);
+
+  useEffect(() => {
+    if (timer === 0 && winStatus !== true) gameOver();
+  }, [timer]);
 
   const cards = [
     { id: 1, name: "stingray", image: "/images/img-0.png" },
@@ -54,12 +62,19 @@ function App() {
 
   function handleStartButton() {}
 
-  //create shuffle cards function
   function startGame() {
-    // setTimer(timer);
+    setTimer(startTime);
     const cardArray = cards.slice(0, gameSize);
     const shuffledArray = justShuffle(cardArray);
     setActiveCards(shuffledArray);
+    setGameOverStatus(false);
+    setWinStatus(false);
+    setFoundPairs([]);
+    setFlippedCards([]);
+    setMatches(0);
+    setNoMatchFlip(0);
+    setFlipCount(0);
+    setMoveCount(0);
   }
 
   function justShuffle(array: PlayingCard[]) {
@@ -83,51 +98,55 @@ function App() {
       if (flippedCards[0].name === flippedCards[1].name) {
         setMatches((prev) => prev + 1);
         setFoundPairs((prev) => [...prev, flippedCards[0].name]);
-        console.log("match count", matches);
       } else {
         setNoMatchFlip((prev) => prev + 1);
-        console.log("no match counter", noMatchFlip);
       }
-      console.log(flippedCards);
-      //re-enable flipping here
       setFlipCount(0);
     }, 800);
+    setMoveCount((prev) => prev + 1);
     setFlippedCards([]);
   }
 
   flippedCards.length === 2 && matchCheck();
 
-  //ADD RESET CARDS FUNCTION/INITIATOR
-
   function resetGame() {}
 
-  //create win function
-
-  //below check creates infinite loop
-
   function winGame() {
+    setWinStatus(true);
     console.log("you win!");
-    setTimerActive(false);
     //stop timer
+    setTimerActive(false);
     //display modal
+    handleOpenModal();
+    //set all cards face down
   }
 
-  //create lose function
-
-  //maybe gameOverStatus and TimerActive serve same purpose?
   function gameOver() {
     setGameOverStatus(true);
-    //turn all cards over
-    setNoMatchFlip((prev) => prev + 1);
-    //disable all cards - cards disabled when timer inactive
+    //turn all cards face down
+    // setNoMatchFlip((prev) => prev + 1);
     //display modal
+    handleOpenModal();
+    //set all cards face down
   }
 
-  //TODO stop timer when all cards matched
-  //why flipping disabled when 2 seconds left? - because i setTimerActive(false) at 1 second left
+  function handleOpenModal() {
+    setOpenModal(true);
+  }
+  function handleCloseModal() {
+    setOpenModal(false);
+  }
 
   return (
     <div className="App">
+      <Modal
+        modalDisplay={openModal}
+        closeModal={handleCloseModal}
+        winStatus={winStatus}
+        gameOverStatus={gameOverStatus}
+        timer={timer}
+        moveCount={moveCount}
+      />
       <Header />
       <div className="main-content">
         <Directions startGame={startGame} setTimerActive={setTimerActive} />
@@ -146,6 +165,8 @@ function App() {
           flipCount={flipCount}
           setFlipCount={setFlipCount}
           timerActive={timerActive}
+          win={winStatus}
+          gameOver={gameOverStatus}
         />
       </div>
     </div>

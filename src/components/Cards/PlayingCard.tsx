@@ -12,6 +12,8 @@ interface Props {
   flipCount: number;
   setFlipCount: Dispatch<SetStateAction<number>>;
   timerActive: boolean;
+  win: boolean;
+  gameOver: boolean;
 }
 
 export default function Card({
@@ -23,6 +25,8 @@ export default function Card({
   flipCount,
   setFlipCount,
   timerActive,
+  win,
+  gameOver,
 }: Props) {
   const [cardRevealed, setCardRevealed] = useState(false);
   const [clickable, setClickable] = useState(false);
@@ -34,14 +38,19 @@ export default function Card({
   //flips mismatched cards back over
   useEffect(() => {
     resetCards();
-  }, [noMatchFlip]);
+  }, [noMatchFlip, win, gameOver]);
 
   //remove matching cards from board
   useEffect(() => {
     if (foundPairs.includes(card.name)) {
       setAlreadyMatched(true);
+    } else {
+      //shows card face during flip on reset
+      setAlreadyMatched(false);
     }
   }, [card.name, foundPairs]);
+
+  //starting new game must setAlreadyMatched(false) on all cards
 
   //if two cards are showing, disable all cards from flipping
   useEffect(() => {
