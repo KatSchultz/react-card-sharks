@@ -8,7 +8,6 @@ interface Props {
   modalDisplay: boolean;
   closeModal: () => void;
   winStatus: boolean;
-  gameOverStatus: boolean;
   timer: number;
   moveCount: number;
 }
@@ -17,7 +16,6 @@ export default function Modal({
   modalDisplay,
   closeModal,
   winStatus,
-  gameOverStatus,
   timer,
   moveCount,
 }: Props) {
@@ -60,7 +58,7 @@ export default function Modal({
           borderRadius: "1rem",
         }}
       >
-        {winStatus && (
+        {winStatus ? (
           <>
             <Typography
               id="modal-modal-title"
@@ -77,8 +75,7 @@ export default function Modal({
               You won in {moveCount} moves with {timer} seconds to spare!
             </Typography>
           </>
-        )}
-        {gameOverStatus && (
+        ) : (
           <>
             <Typography
               id="modal-modal-title"
@@ -92,7 +89,7 @@ export default function Modal({
               id="modal-modal-description"
               sx={{ mt: 2, mb: 2, textAlign: "center" }}
             >
-              You checked {moveCount} pairs of cards.
+              You checked {moveCount} pairs of cards, but you ran out of time.
             </Typography>
           </>
         )}

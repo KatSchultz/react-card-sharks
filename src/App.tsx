@@ -32,7 +32,11 @@ function App() {
   }, [matches, gameSize]);
 
   useEffect(() => {
-    if (timer === 0 && winStatus !== true) gameOver();
+    if (timer === 0 && winStatus !== true) {
+      gameOver();
+      console.log("gameOver called in useEffect");
+      console.log(winStatus);
+    }
   }, [timer]);
 
   const cards = [
@@ -59,8 +63,6 @@ function App() {
     { id: 21, name: "seahorse", image: "/images/img-10.png" },
     { id: 22, name: "seahorse", image: "/images/img-10.png" },
   ];
-
-  function handleStartButton() {}
 
   function startGame() {
     setTimer(startTime);
@@ -118,16 +120,16 @@ function App() {
     setTimerActive(false);
     //display modal
     handleOpenModal();
+    console.log("win status in winGame function: ", winStatus);
     //set all cards face down
   }
 
   function gameOver() {
     setGameOverStatus(true);
     //turn all cards face down
-    // setNoMatchFlip((prev) => prev + 1);
+
     //display modal
     handleOpenModal();
-    //set all cards face down
   }
 
   function handleOpenModal() {
@@ -143,7 +145,6 @@ function App() {
         modalDisplay={openModal}
         closeModal={handleCloseModal}
         winStatus={winStatus}
-        gameOverStatus={gameOverStatus}
         timer={timer}
         moveCount={moveCount}
       />
