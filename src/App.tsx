@@ -16,7 +16,8 @@ function App() {
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
-  const [timer, setTimer] = useState(25);
+  const startTime = 10;
+  const [timer, setTimer] = useState(10);
   const [timerActive, setTimerActive] = useState(false);
   const [gameOverStatus, setGameOverStatus] = useState(false);
   const [winStatus, setWinStatus] = useState(false);
@@ -24,11 +25,15 @@ function App() {
 
   useEffect(() => {
     setActiveCards(cards.slice(0, gameSize));
-  }, []);
+  }, [gameSize]);
 
   useEffect(() => {
     if (matches === gameSize) winGame();
   }, [matches, gameSize]);
+
+  useEffect(() => {
+    if (timer === 0) gameOver();
+  }, [timer]);
 
   const cards = [
     { id: 1, name: "stingray", image: "/images/img-0.png" },
@@ -59,10 +64,17 @@ function App() {
 
   //create shuffle cards function
   function startGame() {
-    // setTimer(timer);
+    setTimer(startTime);
     const cardArray = cards.slice(0, gameSize);
     const shuffledArray = justShuffle(cardArray);
     setActiveCards(shuffledArray);
+    setGameOverStatus(false);
+    setWinStatus(false);
+    setFoundPairs([]);
+    setMatches(0);
+    setNoMatchFlip(0);
+    setFlipCount(0);
+    setMoveCount(0);
   }
 
   function justShuffle(array: PlayingCard[]) {
@@ -113,26 +125,20 @@ function App() {
   function winGame() {
     setWinStatus(true);
     console.log("you win!");
-    setTimerActive(false);
-    handleOpenModal();
     //stop timer
+    setTimerActive(false);
     //display modal
+    handleOpenModal();
   }
 
-  //create lose function
-
-  //maybe gameOverStatus and TimerActive serve same purpose?
   function gameOver() {
     setGameOverStatus(true);
-    //turn all cards over
+    //turn all cards face down
     setNoMatchFlip((prev) => prev + 1);
-    handleOpenModal();
-    //disable all cards - cards disabled when timer inactive
     //display modal
+    handleOpenModal();
   }
 
-  //TODO stop timer when all cards matched
-  //why flipping disabled when 2 seconds left? - because i setTimerActive(false) at 1 second left
   function handleOpenModal() {
     setOpenModal(true);
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import MuiModal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { autocompleteClasses, Button, styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 
 interface Props {
   modalDisplay: boolean;
@@ -57,22 +57,45 @@ export default function Modal({
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
+          borderRadius: "1rem",
         }}
       >
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h2"
-          sx={{ textAlign: "center" }}
-        >
-          You did it!
-        </Typography>
-        <Typography
-          id="modal-modal-description"
-          sx={{ mt: 2, mb: 2, textAlign: "center" }}
-        >
-          You won in {moveCount} moves with {timer} seconds to spare!
-        </Typography>
+        {winStatus && (
+          <>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              sx={{ textAlign: "center", fontFamily: `"Titan One", cursive` }}
+            >
+              You did it!
+            </Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2, mb: 2, textAlign: "center" }}
+            >
+              You won in {moveCount} moves with {timer} seconds to spare!
+            </Typography>
+          </>
+        )}
+        {gameOverStatus && (
+          <>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              sx={{ textAlign: "center", fontFamily: `"Titan One", cursive` }}
+            >
+              Under the sea, try again!
+            </Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2, mb: 2, textAlign: "center" }}
+            >
+              You checked {moveCount} pairs of cards.
+            </Typography>
+          </>
+        )}
         <CustomButton
           onClick={closeModal}
           sx={{ textAlign: "center" }}

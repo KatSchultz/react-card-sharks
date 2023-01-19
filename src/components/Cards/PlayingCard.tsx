@@ -40,8 +40,12 @@ export default function Card({
   useEffect(() => {
     if (foundPairs.includes(card.name)) {
       setAlreadyMatched(true);
+    } else {
+      setAlreadyMatched(false);
     }
   }, [card.name, foundPairs]);
+
+  //starting new game must setAlreadyMatched(false) on all cards
 
   //if two cards are showing, disable all cards from flipping
   useEffect(() => {
