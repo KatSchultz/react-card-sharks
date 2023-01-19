@@ -4,10 +4,21 @@ import GameButtons from "../GameButtons/GameButtons";
 
 interface Props {
   startGame: () => void;
+  timerActive: boolean;
   setTimerActive: Dispatch<SetStateAction<boolean>>;
+  timer: number;
+  setTimer: Dispatch<SetStateAction<number>>;
+  resetGame: () => void;
 }
 
-export default function Directions({ startGame, setTimerActive }: Props) {
+export default function Directions({
+  startGame,
+  timerActive,
+  setTimerActive,
+  timer,
+  setTimer,
+  resetGame,
+}: Props) {
   return (
     <div>
       <h2 className="title-secondary">How to Play</h2>
@@ -22,7 +33,14 @@ export default function Directions({ startGame, setTimerActive }: Props) {
         <li>You have 25 seconds to complete the game</li>
         <li>Time will start once you click the start button</li>
       </ul>
-      <GameButtons startGame={startGame} setTimerActive={setTimerActive} />
+      <GameButtons
+        startGame={startGame}
+        timerActive={timerActive}
+        setTimerActive={setTimerActive}
+        timer={timer}
+        setTimer={setTimer}
+        resetGame={resetGame}
+      />
     </div>
   );
 }

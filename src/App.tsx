@@ -22,6 +22,7 @@ function App() {
   const [gameOverStatus, setGameOverStatus] = useState(false);
   const [winStatus, setWinStatus] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [gameCount, setGameCount] = useState(0);
 
   useEffect(() => {
     setActiveCards(cards.slice(0, gameSize));
@@ -66,6 +67,7 @@ function App() {
 
   function startGame() {
     setTimer(startTime);
+    setGameCount((prev) => prev + 1);
     const cardArray = cards.slice(0, gameSize);
     const shuffledArray = justShuffle(cardArray);
     setActiveCards(shuffledArray);
@@ -111,7 +113,12 @@ function App() {
 
   flippedCards.length === 2 && matchCheck();
 
-  function resetGame() {}
+  function resetGame() {
+    setGameOverStatus(false);
+    startGame();
+    setTimerActive(true);
+    setGameCount((prev) => prev + 1);
+  }
 
   function winGame() {
     setWinStatus(true);
@@ -150,13 +157,20 @@ function App() {
       />
       <Header />
       <div className="main-content">
-        <Directions startGame={startGame} setTimerActive={setTimerActive} />
-        <Timer
+        <Directions
+          startGame={startGame}
+          timerActive={timerActive}
+          setTimerActive={setTimerActive}
+          timer={timer}
+          setTimer={setTimer}
+          resetGame={resetGame}
+        />
+        {/* <Timer
           timer={timer}
           setTimer={setTimer}
           timerActive={timerActive}
           setTimerActive={setTimerActive}
-        />
+        /> */}
         <GameBoard
           cards={activeCards}
           flippedCards={flippedCards}
@@ -166,8 +180,7 @@ function App() {
           flipCount={flipCount}
           setFlipCount={setFlipCount}
           timerActive={timerActive}
-          win={winStatus}
-          gameOver={gameOverStatus}
+          gameCount={gameCount}
         />
       </div>
     </div>

@@ -12,8 +12,7 @@ interface Props {
   flipCount: number;
   setFlipCount: Dispatch<SetStateAction<number>>;
   timerActive: boolean;
-  win: boolean;
-  gameOver: boolean;
+  gameCount: number;
 }
 
 export default function Card({
@@ -25,8 +24,7 @@ export default function Card({
   flipCount,
   setFlipCount,
   timerActive,
-  win,
-  gameOver,
+  gameCount,
 }: Props) {
   const [cardRevealed, setCardRevealed] = useState(false);
   const [clickable, setClickable] = useState(false);
@@ -35,22 +33,21 @@ export default function Card({
   const hiddenClass = alreadyMatched ? "hidden" : "";
   const animateFlip = cardRevealed ? " flip" : "";
 
-  //flips mismatched cards back over
+  //flips mismatched pair back over
   useEffect(() => {
     resetCards();
-  }, [noMatchFlip, win, gameOver]);
+  }, [noMatchFlip, gameCount]);
 
   //remove matching cards from board
   useEffect(() => {
     if (foundPairs.includes(card.name)) {
       setAlreadyMatched(true);
+      //line below makes sure cards are face down on new game
+      setCardRevealed(false);
     } else {
-      //shows card face during flip on reset
       setAlreadyMatched(false);
     }
   }, [card.name, foundPairs]);
-
-  //starting new game must setAlreadyMatched(false) on all cards
 
   //if two cards are showing, disable all cards from flipping
   useEffect(() => {
@@ -77,8 +74,6 @@ export default function Card({
     setClickable(true);
   }
 
-  // if (timerActive) setClickable(true);
-
   return (
     <Paper
       elevation={1}
@@ -104,21 +99,6 @@ export default function Card({
             className="fish-img"
           />
         </div>
-
-        {/* {!cardRevealed && (
-        <img
-          src={process.env.PUBLIC_URL + frontOfCard}
-          alt="unknown"
-          className="fish-img"
-        />
-      )}
-      {cardRevealed && (
-        <img
-          src={process.env.PUBLIC_URL + card.image}
-          alt={card.name}
-          className="fish-img"
-        />
-      )} */}
       </div>
     </Paper>
   );

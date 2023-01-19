@@ -13,8 +13,7 @@ interface Props {
   flipCount: number;
   setFlipCount: Dispatch<SetStateAction<number>>;
   timerActive: boolean;
-  win: boolean;
-  gameOver: boolean;
+  gameCount: number;
 }
 export default function GameBoard({
   cards,
@@ -25,8 +24,7 @@ export default function GameBoard({
   flipCount,
   setFlipCount,
   timerActive,
-  win,
-  gameOver,
+  gameCount,
 }: Props) {
   return (
     <Grid container spacing={2} className="game-board">
@@ -42,8 +40,7 @@ export default function GameBoard({
             flipCount={flipCount}
             setFlipCount={setFlipCount}
             timerActive={timerActive}
-            win={win}
-            gameOver={gameOver}
+            gameCount={gameCount}
           />
         </Grid>
       ))}
