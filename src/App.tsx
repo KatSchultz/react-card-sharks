@@ -32,7 +32,7 @@ function App() {
   }, [matches, gameSize]);
 
   useEffect(() => {
-    if (timer === 0) gameOver();
+    if (timer === 0 && winStatus !== true) gameOver();
   }, [timer]);
 
   const cards = [
@@ -62,7 +62,6 @@ function App() {
 
   function handleStartButton() {}
 
-  //create shuffle cards function
   function startGame() {
     setTimer(startTime);
     const cardArray = cards.slice(0, gameSize);
@@ -71,6 +70,7 @@ function App() {
     setGameOverStatus(false);
     setWinStatus(false);
     setFoundPairs([]);
+    setFlippedCards([]);
     setMatches(0);
     setNoMatchFlip(0);
     setFlipCount(0);
@@ -98,29 +98,18 @@ function App() {
       if (flippedCards[0].name === flippedCards[1].name) {
         setMatches((prev) => prev + 1);
         setFoundPairs((prev) => [...prev, flippedCards[0].name]);
-        console.log("match count", matches);
       } else {
         setNoMatchFlip((prev) => prev + 1);
-        console.log("no match counter", noMatchFlip);
       }
-      console.log(flippedCards);
-      //re-enable flipping here
       setFlipCount(0);
     }, 800);
     setMoveCount((prev) => prev + 1);
     setFlippedCards([]);
   }
 
-  console.log("MoveCount: ", moveCount);
   flippedCards.length === 2 && matchCheck();
 
-  //ADD RESET CARDS FUNCTION/INITIATOR
-
   function resetGame() {}
-
-  //create win function
-
-  //below check creates infinite loop
 
   function winGame() {
     setWinStatus(true);
@@ -129,14 +118,16 @@ function App() {
     setTimerActive(false);
     //display modal
     handleOpenModal();
+    //set all cards face down
   }
 
   function gameOver() {
     setGameOverStatus(true);
     //turn all cards face down
-    setNoMatchFlip((prev) => prev + 1);
+    // setNoMatchFlip((prev) => prev + 1);
     //display modal
     handleOpenModal();
+    //set all cards face down
   }
 
   function handleOpenModal() {
@@ -174,6 +165,8 @@ function App() {
           flipCount={flipCount}
           setFlipCount={setFlipCount}
           timerActive={timerActive}
+          win={winStatus}
+          gameOver={gameOverStatus}
         />
       </div>
     </div>
