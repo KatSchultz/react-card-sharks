@@ -1,6 +1,26 @@
 .game-board {
+  /* aspect-ratio: 1/1; */
   width: 100%;
-  padding: 1rem;
+  /* max-height: fit-content; */
+  /* padding: 1rem; */
+  /* height: 100%; */
   /* display: grid;
   grid-template-columns: 1fr 1fr 1fr; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .game-board {
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .game-board {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* aspect-ratio: 2/1; */
+    max-height: 100%;
+  }
 }

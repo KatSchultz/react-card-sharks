@@ -3,6 +3,7 @@ import "./GameBoard.css";
 import Card from "../Cards/PlayingCard";
 import { PlayingCard } from "../../types";
 import { Grid } from "@mui/material";
+import { Container } from "@mui/system";
 
 interface Props {
   cards: PlayingCard[];
@@ -29,24 +30,45 @@ export default function GameBoard({
   gameOver,
 }: Props) {
   return (
-    <Grid container spacing={2} className="game-board">
+    <div className="game-board">
       {cards.map((card) => (
-        <Grid item xs={4} sm={4} md={3} lg={2} key={card.id}>
-          {/* only okay to use index as key when not modifying layout of objects */}
-          <Card
-            card={card}
-            flippedCards={flippedCards}
-            trackFlips={trackFlips}
-            noMatchFlip={noMatchFlip}
-            foundPairs={foundPairs}
-            flipCount={flipCount}
-            setFlipCount={setFlipCount}
-            timerActive={timerActive}
-            gameCount={gameCount}
-            gameOver={gameOver}
-          />
-        </Grid>
+        <Card
+          card={card}
+          flippedCards={flippedCards}
+          trackFlips={trackFlips}
+          noMatchFlip={noMatchFlip}
+          foundPairs={foundPairs}
+          flipCount={flipCount}
+          setFlipCount={setFlipCount}
+          timerActive={timerActive}
+          gameCount={gameCount}
+          gameOver={gameOver}
+        />
       ))}
-    </Grid>
+    </div>
+
+    // <Grid
+    //   container
+    //   spacing={1}
+    //   // className="game-board"
+    //   // sx={{ aspectRatio: "1/1" }}
+    // >
+    //   {cards.map((card) => (
+    //     <Grid item xs={4} sm={4} md={3} key={card.id}>
+    //       <Card
+    //         card={card}
+    //         flippedCards={flippedCards}
+    //         trackFlips={trackFlips}
+    //         noMatchFlip={noMatchFlip}
+    //         foundPairs={foundPairs}
+    //         flipCount={flipCount}
+    //         setFlipCount={setFlipCount}
+    //         timerActive={timerActive}
+    //         gameCount={gameCount}
+    //         gameOver={gameOver}
+    //       />
+    //     </Grid>
+    //   ))}
+    // </Grid>
   );
 }

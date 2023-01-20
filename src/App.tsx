@@ -6,18 +6,19 @@ import GameBoard from "./components/GameBoard/GameBoard";
 import { PlayingCard } from "./types";
 import Timer from "./components/Timer/Timer";
 import Modal from "./components/Modal/Modal";
+import { Container, Grid } from "@mui/material";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
-  const [gameSize, setGameSize] = useState(6);
+  const [gameSize, setGameSize] = useState(12);
   const [flipCount, setFlipCount] = useState(0);
   const [moveCount, setMoveCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<PlayingCard[]>([]); // holds 2 active cards for comparison
   const [matches, setMatches] = useState(0);
   const [noMatchFlip, setNoMatchFlip] = useState(0);
   const [foundPairs, setFoundPairs] = useState<string[]>([]);
-  const startTime = 10;
-  const [timer, setTimer] = useState(10);
+  const startTime = 25;
+  const [timer, setTimer] = useState(25);
   const [timerActive, setTimerActive] = useState(false);
   const [gameOverStatus, setGameOverStatus] = useState(false);
   const [winStatus, setWinStatus] = useState(false);
@@ -35,8 +36,6 @@ function App() {
   useEffect(() => {
     if (timer === 0 && winStatus !== true) {
       gameOver();
-      console.log("gameOver called in useEffect");
-      console.log(winStatus);
     }
   }, [timer]);
 
@@ -122,20 +121,16 @@ function App() {
 
   function winGame() {
     setWinStatus(true);
-    console.log("you win!");
     //stop timer
     setTimerActive(false);
     //display modal
     handleOpenModal();
-    console.log("win status in winGame function: ", winStatus);
     //set all cards face down
   }
 
   function gameOver() {
-    setGameOverStatus(true);
     //turn all cards face down
-
-    //display modal
+    setGameOverStatus(true);
     handleOpenModal();
   }
 
@@ -156,28 +151,43 @@ function App() {
         moveCount={moveCount}
       />
       <Header />
-      <div className="main-content">
-        <Directions
-          startGame={startGame}
-          timerActive={timerActive}
-          setTimerActive={setTimerActive}
-          timer={timer}
-          setTimer={setTimer}
-          resetGame={resetGame}
-        />
-        <GameBoard
-          cards={activeCards}
-          flippedCards={flippedCards}
-          trackFlips={trackFlippedCards}
-          noMatchFlip={noMatchFlip}
-          foundPairs={foundPairs}
-          flipCount={flipCount}
-          setFlipCount={setFlipCount}
-          timerActive={timerActive}
-          gameCount={gameCount}
-          gameOver={gameOverStatus}
-        />
-      </div>
+      <Container>
+        <Grid
+          container
+          sx={{
+            width: "100%",
+            maxHeight: "90vh",
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            // maxHeight: "90vh",
+          }}
+        >
+          <Grid item sm={5} md={6}>
+            <Directions
+              startGame={startGame}
+              timerActive={timerActive}
+              setTimerActive={setTimerActive}
+              timer={timer}
+              setTimer={setTimer}
+              resetGame={resetGame}
+            />
+          </Grid>
+          <Grid item sm={7} md={6}>
+            <GameBoard
+              cards={activeCards}
+              flippedCards={flippedCards}
+              trackFlips={trackFlippedCards}
+              noMatchFlip={noMatchFlip}
+              foundPairs={foundPairs}
+              flipCount={flipCount}
+              setFlipCount={setFlipCount}
+              timerActive={timerActive}
+              gameCount={gameCount}
+              gameOver={gameOverStatus}
+            />
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }

@@ -134,7 +134,11 @@ export default function Directions({
             display: { xs: "none", sm: "block" },
           }}
         >
-          <Typography variant="h2" className="title-secondary">
+          <Typography
+            variant="h4"
+            className="title-secondary"
+            sx={{ fontFamily: `"Titan One", cursive` }}
+          >
             How to Play
           </Typography>
           <Card>
