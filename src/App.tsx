@@ -151,18 +151,23 @@ function App() {
         moveCount={moveCount}
       />
       <Header />
-      <Container>
+      <Container
+        sx={{
+          width: "100%",
+          height: "100%",
+        }}
+      >
         <Grid
           container
           sx={{
             width: "100%",
-            maxHeight: "90vh",
+            // height: "100vh",
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
             // maxHeight: "90vh",
           }}
         >
-          <Grid item sm={5} md={6}>
+          <Grid item xs={12} sm={5} md={6}>
             <Directions
               startGame={startGame}
               timerActive={timerActive}
@@ -172,7 +177,7 @@ function App() {
               resetGame={resetGame}
             />
           </Grid>
-          <Grid item sm={7} md={6}>
+          <Grid item xs={12} sm={7} md={6} sx={{ minHeight: "fit-content" }}>
             <GameBoard
               cards={activeCards}
               flippedCards={flippedCards}
