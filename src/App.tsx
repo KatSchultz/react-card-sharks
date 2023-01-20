@@ -6,7 +6,8 @@ import GameBoard from "./components/GameBoard/GameBoard";
 import { PlayingCard } from "./types";
 import Timer from "./components/Timer/Timer";
 import Modal from "./components/Modal/Modal";
-import { Container, Grid } from "@mui/material";
+import { Container } from "@mui/material";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 function App() {
   const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
@@ -152,22 +153,21 @@ function App() {
       />
       <Header />
       <Container
-        sx={{
-          width: "100%",
-          height: "100%",
-        }}
+        sx={
+          {
+            // width: "100%",
+            // minHeight: "100%",
+          }
+        }
       >
-        <Grid
+        <Grid2
           container
           sx={{
-            width: "100%",
-            // height: "100vh",
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
-            // maxHeight: "90vh",
           }}
         >
-          <Grid item xs={12} sm={5} md={6}>
+          <Grid2 xs={12} sm={5} md={6}>
             <Directions
               startGame={startGame}
               timerActive={timerActive}
@@ -176,8 +176,8 @@ function App() {
               setTimer={setTimer}
               resetGame={resetGame}
             />
-          </Grid>
-          <Grid item xs={12} sm={7} md={6} sx={{ minHeight: "fit-content" }}>
+          </Grid2>
+          <Grid2 xs={12} sm={7} md={6} sx={{ minHeight: "fit-content" }}>
             <GameBoard
               cards={activeCards}
               flippedCards={flippedCards}
@@ -190,8 +190,8 @@ function App() {
               gameCount={gameCount}
               gameOver={gameOverStatus}
             />
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       </Container>
     </div>
   );

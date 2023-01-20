@@ -46,12 +46,10 @@ export default function GameBoard({
         />
       ))}
     </div>
-
+    // <div style={{ height: "fit-content" }}>
     // <Grid
     //   container
     //   spacing={1}
-    //   // className="game-board"
-    //   // sx={{ aspectRatio: "1/1" }}
     // >
     //   {cards.map((card) => (
     //     <Grid item xs={4} sm={4} md={3} key={card.id}>
@@ -70,5 +68,6 @@ export default function GameBoard({
     //     </Grid>
     //   ))}
     // </Grid>
+    // </div>
   );
 }
