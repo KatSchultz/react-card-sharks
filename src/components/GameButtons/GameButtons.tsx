@@ -62,20 +62,19 @@ export default function GameButtons({
       >
         Start
       </CustomButton>
+      <Timer
+        timer={timer}
+        setTimer={setTimer}
+        timerActive={timerActive}
+        setTimerActive={setTimerActive}
+      />
       <CustomButton variant="contained" onClick={handleResetButton}>
         Reset
       </CustomButton>
       <div
         className="timer-holder"
         style={{ height: "36px", aspectRatio: "1/1" }}
-      >
-        <Timer
-          timer={timer}
-          setTimer={setTimer}
-          timerActive={timerActive}
-          setTimerActive={setTimerActive}
-        />
-      </div>
+      ></div>
     </Stack>
   );
 }
