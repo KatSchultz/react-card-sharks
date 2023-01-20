@@ -34,6 +34,7 @@ export default function GameButtons({
     ":hover": {
       backgroundColor: "#787600",
     },
+    textShadow: "0 0 5px black",
     fontFamily: `"Titan One", cursive`,
   }) as typeof Button;
 
@@ -54,7 +55,8 @@ export default function GameButtons({
       direction="row"
       className="btn-container"
       alignItems="center"
-      justifyContent="center"
+      justifyContent="space-around"
+      width={"100%"}
     >
       <CustomButton
         variant="contained"
@@ -62,19 +64,17 @@ export default function GameButtons({
       >
         Start
       </CustomButton>
+
       <Timer
         timer={timer}
         setTimer={setTimer}
         timerActive={timerActive}
         setTimerActive={setTimerActive}
       />
+
       <CustomButton variant="contained" onClick={handleResetButton}>
         Reset
       </CustomButton>
-      <div
-        className="timer-holder"
-        style={{ height: "36px", aspectRatio: "1/1" }}
-      ></div>
     </Stack>
   );
 }

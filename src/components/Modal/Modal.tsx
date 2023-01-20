@@ -24,6 +24,7 @@ export default function Modal({
     ":hover": {
       backgroundColor: "#787600",
     },
+    textShadow: "0 0 6px black",
     fontFamily: `"Titan One", cursive`,
   }) as typeof Button;
 

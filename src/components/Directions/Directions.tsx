@@ -3,12 +3,16 @@ import "./Directions.css";
 import GameButtons from "../GameButtons/GameButtons";
 import {
   Button,
+  Card,
+  Container,
   List,
   ListItem,
   ListItemText,
+  Paper,
   Popover,
   Typography,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 interface Props {
   startGame: () => void;
@@ -31,6 +35,15 @@ export default function Directions({
     null
   );
 
+  const CustomButton = styled(Button)({
+    backgroundColor: "#dad806",
+    ":hover": {
+      backgroundColor: "#787600",
+    },
+    textShadow: "0 0 5px black",
+    fontFamily: `"Titan One", cursive`,
+  }) as typeof Button;
+
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     setAnchorEl(event.currentTarget);
   }
@@ -44,68 +57,143 @@ export default function Directions({
 
   return (
     <div>
-      <div>
-        <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+      {/* <Container sx={{padding: "1rem 0"}}>
+        <GameButtons
+          startGame={startGame}
+          timerActive={timerActive}
+          setTimerActive={setTimerActive}
+          timer={timer}
+          setTimer={setTimer}
+          resetGame={resetGame}
+        />
+      </Container> */}
+      <div className="directions-container">
+        <CustomButton
+          sx={{ display: { xs: "block", sm: "none", md: "none" } }}
+          aria-describedby={id}
+          variant="contained"
+          onClick={handleClick}
+        >
           How to Play
-        </Button>
+        </CustomButton>
         <Popover
           id={id}
           open={open}
-          anchorEl={anchorEl}
           onClose={handleClose}
           anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
+            vertical: "center",
+            horizontal: "center",
+          }}
+          transformOrigin={{
+            vertical: "center",
+            horizontal: "center",
           }}
         >
-          <List dense={false}>
+          <List dense={false} sx={{ backgroundColor: "#003054" }}>
             <ListItem sx={{ padding: "0 16px" }}>
               <ListItemText
-                sx={{ padding: "0", color: "black" }}
+                sx={{ padding: "0", color: "white" }}
                 primary="Choose two cards to compare"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ padding: "0", color: "black" }}
+                sx={{ padding: "0", color: "white" }}
                 primary="If the two cards match, they will be removed from the board"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ padding: "0", color: "black" }}
+                sx={{ padding: "0", color: "white" }}
                 primary="If the two cards do not match, they will flip over and remain on the board"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ padding: "0", color: "black" }}
+                sx={{ padding: "0", color: "white" }}
                 primary="Try to match all the cards before time runs out"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ padding: "0", color: "black" }}
+                sx={{ padding: "0", color: "white" }}
                 primary="You have 25 seconds to complete the game"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ padding: "0", color: "black" }}
+                sx={{ padding: "0", color: "white" }}
                 primary="Time will start once you click the start button"
               />
             </ListItem>
           </List>
         </Popover>
+        {/* visible on larger screen */}
+        <Container
+          sx={{
+            display: { xs: "none", sm: "block" },
+          }}
+        >
+          <Typography variant="h2" className="title-secondary">
+            How to Play
+          </Typography>
+          <Card>
+            <List
+              dense={false}
+              sx={{
+                backgroundColor: "#003054",
+              }}
+            >
+              <ListItem sx={{ padding: "0 16px" }}>
+                <ListItemText
+                  sx={{ padding: "0", color: "white" }}
+                  primary="Choose two cards to compare"
+                />
+              </ListItem>
+              <ListItem sx={{ padding: "0 16px" }}>
+                <ListItemText
+                  sx={{ padding: "0", color: "white" }}
+                  primary="If the two cards match, they will be removed from the board"
+                />
+              </ListItem>
+              <ListItem sx={{ padding: "0 16px" }}>
+                <ListItemText
+                  sx={{ padding: "0", color: "white" }}
+                  primary="If the two cards do not match, they will flip over and remain on the board"
+                />
+              </ListItem>
+              <ListItem sx={{ padding: "0 16px" }}>
+                <ListItemText
+                  sx={{ padding: "0", color: "white" }}
+                  primary="Try to match all the cards before time runs out"
+                />
+              </ListItem>
+              <ListItem sx={{ padding: "0 16px" }}>
+                <ListItemText
+                  sx={{ padding: "0", color: "white" }}
+                  primary="You have 25 seconds to complete the game"
+                />
+              </ListItem>
+              <ListItem sx={{ padding: "0 16px" }}>
+                <ListItemText
+                  sx={{ padding: "0", color: "white" }}
+                  primary="Time will start once you click the start button"
+                />
+              </ListItem>
+            </List>
+          </Card>
+        </Container>
       </div>
-      <GameButtons
-        startGame={startGame}
-        timerActive={timerActive}
-        setTimerActive={setTimerActive}
-        timer={timer}
-        setTimer={setTimer}
-        resetGame={resetGame}
-      />
+      <Container sx={{ padding: "1rem 0" }}>
+        <GameButtons
+          startGame={startGame}
+          timerActive={timerActive}
+          setTimerActive={setTimerActive}
+          timer={timer}
+          setTimer={setTimer}
+          resetGame={resetGame}
+        />
+      </Container>
     </div>
   );
 }
