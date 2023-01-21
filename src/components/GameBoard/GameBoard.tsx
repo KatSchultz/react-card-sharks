@@ -33,6 +33,7 @@ export default function GameBoard({
     <div className="game-board">
       {cards.map((card) => (
         <Card
+          key={card.id}
           card={card}
           flippedCards={flippedCards}
           trackFlips={trackFlips}

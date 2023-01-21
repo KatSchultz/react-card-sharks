@@ -134,20 +134,19 @@ export default function Directions({
             display: { xs: "none", sm: "block" },
           }}
         >
-          <Typography
-            variant="h4"
-            className="title-secondary"
-            sx={{ fontFamily: `"Titan One", cursive` }}
+          <Card
+            sx={{
+              backgroundColor: "#003054",
+            }}
           >
-            How to Play
-          </Typography>
-          <Card>
-            <List
-              dense={false}
-              sx={{
-                backgroundColor: "#003054",
-              }}
+            <Typography
+              variant="h4"
+              className="title-secondary"
+              sx={{ fontFamily: `"Titan One", cursive` }}
             >
+              How to Play
+            </Typography>
+            <List dense={false}>
               <ListItem sx={{ padding: "0 16px" }}>
                 <ListItemText
                   sx={{ padding: "0", color: "white" }}
