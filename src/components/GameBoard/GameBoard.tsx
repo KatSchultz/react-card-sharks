@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import "./GameBoard.css";
 import Card from "../Cards/PlayingCard";
 import { PlayingCard } from "../../types";
+import CardDirectImport from "../Cards/PlayingCardDirectImport";
 
 interface Props {
   cards: PlayingCard[];
@@ -30,7 +31,7 @@ export default function GameBoard({
   return (
     <div className="game-board">
       {cards.map((card) => (
-        <Card
+        <CardDirectImport
           key={card.id}
           card={card}
           flippedCards={flippedCards}
