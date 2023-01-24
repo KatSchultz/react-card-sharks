@@ -113,10 +113,12 @@ export default function CardDirectImport({
     >
       <div className="card-faces">
         <div className="card-front face">
-          <img src={frontCardImg} alt="unknown" className="fish-img" />
+          <div className="card-placeholder"></div>
+          {/* <img src={frontCardImg} alt="unknown" className="fish-img" /> */}
         </div>
         <div className="card-back face">
-          <img src={currentImg.image} alt={card.name} className="fish-img" />
+          <div className="placeholder-fish-side"></div>
+          {/* <img src={currentImg.image} alt={card.name} className="fish-img" /> */}
         </div>
       </div>
     </Paper>
