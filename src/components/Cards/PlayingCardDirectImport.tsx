@@ -8,6 +8,7 @@ import img2 from "../../images/img-2.png";
 import img3 from "../../images/img-3.png";
 import img4 from "../../images/img-4.png";
 import img5 from "../../images/img-5.png";
+import cardFront from "../../images/frontOfCard.png";
 
 interface Props {
   card: PlayingCard;
@@ -40,6 +41,7 @@ export default function CardDirectImport({
   const frontOfCard = "/images/frontOfCard.png";
   const hiddenClass = alreadyMatched ? "hidden" : "";
   const animateFlip = cardRevealed ? " flip" : "";
+  const frontCardImg = cardFront;
   const cardImages = [
     { id: 1, name: "stingray", image: img0 },
     { id: 2, name: "stingray", image: img0 },
@@ -111,18 +113,10 @@ export default function CardDirectImport({
     >
       <div className="card-faces">
         <div className="card-front face">
-          <img
-            src={process.env.PUBLIC_URL + frontOfCard}
-            alt="unknown"
-            className="fish-img"
-          />
+          <img src={frontCardImg} alt="unknown" className="fish-img" />
         </div>
         <div className="card-back face">
-          <img
-            src={process.env.PUBLIC_URL + currentImg.image}
-            alt={card.name}
-            className="fish-img"
-          />
+          <img src={currentImg.image} alt={card.name} className="fish-img" />
         </div>
       </div>
     </Paper>
