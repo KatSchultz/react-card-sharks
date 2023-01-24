@@ -55,8 +55,9 @@ export default function GameButtons({
       direction="row"
       className="btn-container"
       alignItems="center"
-      justifyContent="space-around"
+      justifyContent="space-between"
       width={"100%"}
+      mb="1rem"
     >
       <CustomButton
         variant="contained"
