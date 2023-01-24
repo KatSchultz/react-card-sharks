@@ -12,12 +12,6 @@
   /* overflow: hidden; */
 }
 
-@media only screen and (min-width: 600px) {
-  .game-board {
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
-  }
-}
-
 @media only screen and (min-width: 768px) {
   .game-board {
     grid-template-columns: 1fr 1fr 1fr 1fr;
