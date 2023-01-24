@@ -176,7 +176,7 @@ function App() {
               resetGame={resetGame}
             />
           </Grid2>
-          <Grid2 xs={12} sm={7} md={6} sx={{ minHeight: "fit-content" }}>
+          <Grid2 xs={12} sm={7} md={6} sx={{ minHeight: "70vh" }}>
             <GameBoard
               cards={activeCards}
               flippedCards={flippedCards}
