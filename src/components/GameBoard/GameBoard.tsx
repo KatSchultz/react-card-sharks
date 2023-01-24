@@ -30,7 +30,9 @@ export default function GameBoard({
   gameOver,
 }: Props) {
   return (
-    <div className="square"></div>
+    // <div className="square">
+    //   <div className="rectangle"></div>
+    // </div>
     // <div className="game-board">
     //   {cards.map((card) => (
     //     <CardDirectImport
@@ -49,24 +51,24 @@ export default function GameBoard({
     //   ))}
     // </div>
     // <div style={{ height: "fit-content", backgroundColor: "red" }}>
-    // <Grid2 container spacing={1} sx={{ backgroundColor: "red" }}>
-    //   {cards.map((card) => (
-    //     <Grid2 xs={4} sm={4} md={3} key={card.id}>
-    //       <Card
-    //         card={card}
-    //         flippedCards={flippedCards}
-    //         trackFlips={trackFlips}
-    //         noMatchFlip={noMatchFlip}
-    //         foundPairs={foundPairs}
-    //         flipCount={flipCount}
-    //         setFlipCount={setFlipCount}
-    //         timerActive={timerActive}
-    //         gameCount={gameCount}
-    //         gameOver={gameOver}
-    //       />
-    //     </Grid2>
-    //   ))}
-    // </Grid2>
+    <Grid2 container spacing={1} sx={{ backgroundColor: "red" }}>
+      {cards.map((card) => (
+        <Grid2 xs={4} sm={4} md={3} key={card.id}>
+          <Card
+            card={card}
+            flippedCards={flippedCards}
+            trackFlips={trackFlips}
+            noMatchFlip={noMatchFlip}
+            foundPairs={foundPairs}
+            flipCount={flipCount}
+            setFlipCount={setFlipCount}
+            timerActive={timerActive}
+            gameCount={gameCount}
+            gameOver={gameOver}
+          />
+        </Grid2>
+      ))}
+    </Grid2>
     // </div>
   );
 }

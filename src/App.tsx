@@ -158,39 +158,34 @@ function App() {
         moveCount={moveCount}
       />
       <Header />
-      <Container>
-        <Grid2
-          container
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-          }}
-        >
-          <Grid2 xs={12} sm={5} md={6}>
-            <Directions
-              startGame={startGame}
-              timerActive={timerActive}
-              setTimerActive={setTimerActive}
-              timer={timer}
-              setTimer={setTimer}
-              resetGame={resetGame}
-            />
-          </Grid2>
-          <Grid2 xs={12} sm={7} md={6} sx={{ minHeight: "70vh" }}>
-            <GameBoard
-              cards={activeCards}
-              flippedCards={flippedCards}
-              trackFlips={trackFlippedCards}
-              noMatchFlip={noMatchFlip}
-              foundPairs={foundPairs}
-              flipCount={flipCount}
-              setFlipCount={setFlipCount}
-              timerActive={timerActive}
-              gameCount={gameCount}
-              gameOver={gameOverStatus}
-            />
-          </Grid2>
-        </Grid2>
+
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+        }}
+      >
+        <Directions
+          startGame={startGame}
+          timerActive={timerActive}
+          setTimerActive={setTimerActive}
+          timer={timer}
+          setTimer={setTimer}
+          resetGame={resetGame}
+        />
+
+        <GameBoard
+          cards={activeCards}
+          flippedCards={flippedCards}
+          trackFlips={trackFlippedCards}
+          noMatchFlip={noMatchFlip}
+          foundPairs={foundPairs}
+          flipCount={flipCount}
+          setFlipCount={setFlipCount}
+          timerActive={timerActive}
+          gameCount={gameCount}
+          gameOver={gameOverStatus}
+        />
       </Container>
     </div>
   );
