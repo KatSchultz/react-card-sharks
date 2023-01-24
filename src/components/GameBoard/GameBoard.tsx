@@ -2,8 +2,6 @@ import React, { Dispatch, SetStateAction } from "react";
 import "./GameBoard.css";
 import Card from "../Cards/PlayingCard";
 import { PlayingCard } from "../../types";
-import { Grid } from "@mui/material";
-import { Container } from "@mui/system";
 
 interface Props {
   cards: PlayingCard[];
@@ -47,28 +45,5 @@ export default function GameBoard({
         />
       ))}
     </div>
-    // <div style={{ height: "fit-content" }}>
-    // <Grid
-    //   container
-    //   spacing={1}
-    // >
-    //   {cards.map((card) => (
-    //     <Grid item xs={4} sm={4} md={3} key={card.id}>
-    //       <Card
-    //         card={card}
-    //         flippedCards={flippedCards}
-    //         trackFlips={trackFlips}
-    //         noMatchFlip={noMatchFlip}
-    //         foundPairs={foundPairs}
-    //         flipCount={flipCount}
-    //         setFlipCount={setFlipCount}
-    //         timerActive={timerActive}
-    //         gameCount={gameCount}
-    //         gameOver={gameOver}
-    //       />
-    //     </Grid>
-    //   ))}
-    // </Grid>
-    // </div>
   );
 }

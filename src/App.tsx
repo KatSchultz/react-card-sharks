@@ -4,7 +4,6 @@ import Header from "./components/header/Header";
 import Directions from "./components/Directions/Directions";
 import GameBoard from "./components/GameBoard/GameBoard";
 import { PlayingCard } from "./types";
-import Timer from "./components/Timer/Timer";
 import Modal from "./components/Modal/Modal";
 import { Container } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
@@ -31,14 +30,21 @@ function App() {
   }, [gameSize]);
 
   useEffect(() => {
-    if (matches === gameSize) winGame();
+    if (matches === gameSize) {
+      setWinStatus(true);
+      //stop timer
+      setTimerActive(false);
+      //display modal
+      handleOpenModal();
+    }
   }, [matches, gameSize]);
 
   useEffect(() => {
     if (timer === 0 && winStatus !== true) {
-      gameOver();
+      setGameOverStatus(true);
+      handleOpenModal();
     }
-  }, [timer]);
+  }, [timer, winStatus]);
 
   const cards = [
     { id: 1, name: "stingray", image: "/images/img-0.png" },
@@ -120,20 +126,20 @@ function App() {
     setGameCount((prev) => prev + 1);
   }
 
-  function winGame() {
-    setWinStatus(true);
-    //stop timer
-    setTimerActive(false);
-    //display modal
-    handleOpenModal();
-    //set all cards face down
-  }
+  // function winGame() {
+  //   setWinStatus(true);
+  //   //stop timer
+  //   setTimerActive(false);
+  //   //display modal
+  //   handleOpenModal();
+  //   //set all cards face down
+  // }
 
-  function gameOver() {
-    //turn all cards face down
-    setGameOverStatus(true);
-    handleOpenModal();
-  }
+  // function gameOver() {
+  //   //turn all cards face down
+  //   setGameOverStatus(true);
+  //   handleOpenModal();
+  // }
 
   function handleOpenModal() {
     setOpenModal(true);
@@ -152,14 +158,7 @@ function App() {
         moveCount={moveCount}
       />
       <Header />
-      <Container
-        sx={
-          {
-            // width: "100%",
-            // minHeight: "100%",
-          }
-        }
-      >
+      <Container>
         <Grid2
           container
           sx={{

@@ -8,12 +8,10 @@ import {
   List,
   ListItem,
   ListItemText,
-  Paper,
   Popover,
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Stack } from "@mui/system";
 
 interface Props {
   startGame: () => void;
