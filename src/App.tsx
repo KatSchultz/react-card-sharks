@@ -172,12 +172,13 @@ function App() {
       />
       <Header />
 
-      <Container
+      {/* <Container
         sx={{
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
         }}
-      >
+      > */}
+      <div className="main-content">
         <Directions
           startGame={startGame}
           timerActive={timerActive}
@@ -199,7 +200,8 @@ function App() {
           gameCount={gameCount}
           gameOver={gameOverStatus}
         />
-      </Container>
+        {/* </Container> */}
+      </div>
     </div>
   );
 }

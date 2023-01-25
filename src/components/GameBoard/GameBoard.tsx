@@ -59,7 +59,7 @@ export default function GameBoard({
     // <div style={{ height: "fit-content", backgroundColor: "red" }}>
     <Grid2 container spacing={1} sx={{ backgroundColor: "red" }}>
       {cards.map((card) => (
-        <Grid2 xs={4} sm={4} md={3} key={card.id}>
+        <Grid2 xs={4} sm={4} lg={3} key={card.id}>
           <Card
             card={card}
             flippedCards={flippedCards}
