@@ -9,7 +9,20 @@ import { Container } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 function App() {
-  const [activeCards, setActiveCards] = useState<PlayingCard[]>([]);
+  const [activeCards, setActiveCards] = useState<PlayingCard[]>([
+    { id: 1, name: "stingray", image: "/images/img-0.png" },
+    { id: 2, name: "stingray", image: "/images/img-0.png" },
+    { id: 3, name: "blue hippo tang", image: "/images/img-1.png" },
+    { id: 4, name: "blue hippo tang", image: "/images/img-1.png" },
+    { id: 5, name: "clownfish", image: "/images/img-2.png" },
+    { id: 6, name: "clownfish", image: "/images/img-2.png" },
+    { id: 7, name: "octopus", image: "/images/img-3.png" },
+    { id: 8, name: "octopus", image: "/images/img-3.png" },
+    { id: 9, name: "sea turtle", image: "/images/img-4.png" },
+    { id: 10, name: "sea turtle", image: "/images/img-4.png" },
+    { id: 11, name: "whale shark", image: "/images/img-5.png" },
+    { id: 12, name: "whale shark", image: "/images/img-5.png" },
+  ]);
   const [gameSize, setGameSize] = useState(12);
   const [flipCount, setFlipCount] = useState(0);
   const [moveCount, setMoveCount] = useState(0);

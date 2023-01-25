@@ -31,7 +31,13 @@ export default function GameBoard({
 }: Props) {
   return (
     <div className="square">
-      <img src={cards[0].image} alt="" />
+      <picture>
+        <source srcSet={process.env.PUBLIC_URL + cards[0].image} />
+        <img
+          src={process.env.PUBLIC_URL + cards[0].image}
+          alt={cards[0].name}
+        />
+      </picture>
     </div>
     // <div className="game-board">
     //   {cards.map((card) => (
