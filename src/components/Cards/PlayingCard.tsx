@@ -86,41 +86,36 @@ export default function Card({
     //   className={"playing-card " + hiddenClass + animateFlip}
     //   onClick={clickable ? clickHandler : () => {}}
     // >
+    // <div
+    //   className={"playing-card " + hiddenClass + animateFlip}
+    //   onClick={clickable ? clickHandler : () => {}}
+    // >
     <div
-      className={"playing-card " + hiddenClass + animateFlip}
+      className={"card-faces playing-card " + hiddenClass + animateFlip}
       onClick={clickable ? clickHandler : () => {}}
     >
-      <picture>
-        <source srcSet={process.env.PUBLIC_URL + card.image} />
-        <img
-          src={process.env.PUBLIC_URL + card.image}
-          alt={card.name}
-          className="fish-img"
-        />
-      </picture>
-      {/* <div className="card-faces">
-        <div className="card-front face">
-          <picture>
-            <source srcSet={process.env.PUBLIC_URL + frontOfCard} />
-            <img
-              src={process.env.PUBLIC_URL + frontOfCard}
-              alt="unknown"
-              className="fish-img"
-            />
-          </picture>
-        </div>
-        <div className="card-back face">
-          <picture>
-            <source srcSet={process.env.PUBLIC_URL + card.image} />
-            <img
-              src={process.env.PUBLIC_URL + card.image}
-              alt={card.name}
-              className="fish-img"
-            />
-          </picture>
-        </div>
-      </div> */}
+      <div className="card-front face">
+        <picture>
+          <source srcSet={process.env.PUBLIC_URL + frontOfCard} />
+          <img
+            src={process.env.PUBLIC_URL + frontOfCard}
+            alt="unknown"
+            className="fish-img"
+          />
+        </picture>
+      </div>
+      <div className="card-back face">
+        <picture>
+          <source srcSet={process.env.PUBLIC_URL + card.image} />
+          <img
+            src={process.env.PUBLIC_URL + card.image}
+            alt={card.name}
+            className="fish-img"
+          />
+        </picture>
+      </div>
     </div>
+    // </div>
     // </Paper>
   );
 }
