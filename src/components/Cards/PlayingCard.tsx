@@ -90,7 +90,15 @@ export default function Card({
       className={"playing-card " + hiddenClass + animateFlip}
       onClick={clickable ? clickHandler : () => {}}
     >
-      <div className="card-faces">
+      <picture>
+        <source srcSet={process.env.PUBLIC_URL + card.image} />
+        <img
+          src={process.env.PUBLIC_URL + card.image}
+          alt={card.name}
+          className="fish-img"
+        />
+      </picture>
+      {/* <div className="card-faces">
         <div className="card-front face">
           <picture>
             <source srcSet={process.env.PUBLIC_URL + frontOfCard} />
@@ -111,7 +119,7 @@ export default function Card({
             />
           </picture>
         </div>
-      </div>
+      </div> */}
     </div>
     // </Paper>
   );
