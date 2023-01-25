@@ -77,12 +77,16 @@ export default function Card({
   }
 
   return (
-    <Paper
-      elevation={1}
-      sx={{
-        background: "transparent",
-        boxShadow: "none",
-      }}
+    // <Paper
+    //   elevation={1}
+    //   sx={{
+    //     background: "transparent",
+    //     boxShadow: "none",
+    //   }}
+    //   className={"playing-card " + hiddenClass + animateFlip}
+    //   onClick={clickable ? clickHandler : () => {}}
+    // >
+    <div
       className={"playing-card " + hiddenClass + animateFlip}
       onClick={clickable ? clickHandler : () => {}}
     >
@@ -108,6 +112,7 @@ export default function Card({
           </picture>
         </div>
       </div>
-    </Paper>
+    </div>
+    // </Paper>
   );
 }
