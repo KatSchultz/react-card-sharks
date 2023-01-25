@@ -88,18 +88,24 @@ export default function Card({
     >
       <div className="card-faces">
         <div className="card-front face">
-          <img
-            src={process.env.PUBLIC_URL + frontOfCard}
-            alt="unknown"
-            className="fish-img"
-          />
+          <picture>
+            <source srcSet={process.env.PUBLIC_URL + frontOfCard} />
+            <img
+              src={process.env.PUBLIC_URL + frontOfCard}
+              alt="unknown"
+              className="fish-img"
+            />
+          </picture>
         </div>
         <div className="card-back face">
-          <img
-            src={process.env.PUBLIC_URL + card.image}
-            alt={card.name}
-            className="fish-img"
-          />
+          <picture>
+            <source srcSet={process.env.PUBLIC_URL + card.image} />
+            <img
+              src={process.env.PUBLIC_URL + card.image}
+              alt={card.name}
+              className="fish-img"
+            />
+          </picture>
         </div>
       </div>
     </Paper>
