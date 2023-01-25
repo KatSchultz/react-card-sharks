@@ -39,42 +39,42 @@ export default function GameBoard({
     //     />
     //   </picture>
     // </div>
-    // <div className="game-board">
-    //   {cards.map((card) => (
-    //     <CardDirectImport
-    //       key={card.id}
-    //       card={card}
-    //       flippedCards={flippedCards}
-    //       trackFlips={trackFlips}
-    //       noMatchFlip={noMatchFlip}
-    //       foundPairs={foundPairs}
-    //       flipCount={flipCount}
-    //       setFlipCount={setFlipCount}
-    //       timerActive={timerActive}
-    //       gameCount={gameCount}
-    //       gameOver={gameOver}
-    //     />
-    //   ))}
-    // </div>
-    // <div style={{ height: "fit-content", backgroundColor: "red" }}>
-    <Grid2 container spacing={1} sx={{ backgroundColor: "red" }}>
+    <div className="game-board">
       {cards.map((card) => (
-        <Grid2 xs={4} sm={4} lg={3} key={card.id}>
-          <Card
-            card={card}
-            flippedCards={flippedCards}
-            trackFlips={trackFlips}
-            noMatchFlip={noMatchFlip}
-            foundPairs={foundPairs}
-            flipCount={flipCount}
-            setFlipCount={setFlipCount}
-            timerActive={timerActive}
-            gameCount={gameCount}
-            gameOver={gameOver}
-          />
-        </Grid2>
+        <Card
+          key={card.id}
+          card={card}
+          flippedCards={flippedCards}
+          trackFlips={trackFlips}
+          noMatchFlip={noMatchFlip}
+          foundPairs={foundPairs}
+          flipCount={flipCount}
+          setFlipCount={setFlipCount}
+          timerActive={timerActive}
+          gameCount={gameCount}
+          gameOver={gameOver}
+        />
       ))}
-    </Grid2>
+    </div>
+    // <div style={{ height: "fit-content", backgroundColor: "red" }}>
+    // <Grid2 container spacing={1} sx={{ backgroundColor: "red" }}>
+    //   {cards.map((card) => (
+    //     <Grid2 xs={4} sm={4} lg={3} key={card.id}>
+    //       <Card
+    //         card={card}
+    //         flippedCards={flippedCards}
+    //         trackFlips={trackFlips}
+    //         noMatchFlip={noMatchFlip}
+    //         foundPairs={foundPairs}
+    //         flipCount={flipCount}
+    //         setFlipCount={setFlipCount}
+    //         timerActive={timerActive}
+    //         gameCount={gameCount}
+    //         gameOver={gameOver}
+    //       />
+    //     </Grid2>
+    //   ))}
+    // </Grid2>
     // </div>
   );
 }
