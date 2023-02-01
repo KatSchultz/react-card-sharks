@@ -43,7 +43,7 @@ function App() {
   }, [gameSize]);
 
   useEffect(() => {
-    if (matches === gameSize) {
+    if (matches === gameSize / 2) {
       setWinStatus(true);
       //stop timer
       setTimerActive(false);
